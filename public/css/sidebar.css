@@ -1,0 +1,56 @@
+.smallIcon {
+    margin-bottom: 10px;
+}
+
+.iconHigh {
+    background-color: white;
+    box-shadow: 0px 0px 5px white;
+}
+
+/************Name Display************/
+@media screen and (min-width: 725px) {
+  .sideNameFull {
+    display: block;
+  }
+}
+@media screen and (max-width: 724px) {
+  .sideNameFull {
+    display: none;
+  }
+}
+
+@media screen and (min-width: 725px) {
+  .sideNameShort {
+    display: none;
+  }
+}
+@media screen and (max-width: 724px) {
+  .sideNameShort {
+    display: block;
+  }
+}
+/************************************/
+
+/***********GH/LI links**************/
+@media screen and (min-width: 725px) {
+  .lighlinksFull {
+    display: block;
+  }
+}
+@media screen and (max-width: 724px) {
+  .lighlinksFull {
+    display: none;
+  }
+}
+
+@media screen and (min-width: 725px) {
+  .lighlinksShort {
+    display: none;
+  }
+}
+@media screen and (max-width: 724px) {
+  .lighlinksShort {
+    display: block;
+  }
+}
+/************************************/

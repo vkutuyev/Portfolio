@@ -1,0 +1,25 @@
+body {
+    background: #0D2F7D;
+    color: white;
+    font-size: 3em;
+    width: 100vw;
+}
+
+.container{
+    width: 100vw !important;
+}
+
+#visual{
+    height: 100vh;
+    width: 100vw;
+    position:fixed;
+    margin-left: 25%;
+    z-index: -10;
+}
+
+#rusFlag {
+    position: absolute;
+    border-radius: 50%;
+    z-index: 1;
+    margin: 0 auto;
+}
