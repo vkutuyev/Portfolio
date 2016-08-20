@@ -24499,6 +24499,8 @@ module.exports = AboutPage;
 },{"react":219}],224:[function(require,module,exports){
 var React = require('react');
 var Sidebar = require('../sidebar/Sidebar.jsx');
+var ReactRouter = require('react-router');
+var Link = ReactRouter.Link;
 
 var BasePage = React.createClass({
     displayName: 'BasePage',
@@ -24506,7 +24508,7 @@ var BasePage = React.createClass({
     render: function () {
 
         var sideStyle = {
-            height: '100vh',
+            height: window.innerHeight,
             color: 'white',
             background: '#0D2F7D',
             padding: '25',
@@ -24521,7 +24523,7 @@ var BasePage = React.createClass({
             { className: 'container' },
             React.createElement(
                 'div',
-                { className: 'col-xs-3', style: sideStyle },
+                { className: 'col-xs-3', style: sideStyle, id: 'sideWindow' },
                 React.createElement(Sidebar, null)
             ),
             React.createElement(
@@ -24535,7 +24537,7 @@ var BasePage = React.createClass({
 
 module.exports = BasePage;
 
-},{"../sidebar/Sidebar.jsx":233,"react":219}],225:[function(require,module,exports){
+},{"../sidebar/Sidebar.jsx":233,"react":219,"react-router":82}],225:[function(require,module,exports){
 var React = require('react');
 
 var HomePage = React.createClass({
@@ -24544,8 +24546,8 @@ var HomePage = React.createClass({
     render: function () {
         return React.createElement(
             'div',
-            null,
-            'Home!'
+            { className: 'row' },
+            React.createElement('img', { src: 'img/SFShadow.png', alt: 'BG', width: '100%' })
         );
     }
 });
@@ -24633,7 +24635,7 @@ var LargeIcon = React.createClass({
                 { className: 'row' },
                 React.createElement(
                     'a',
-                    { href: this.props.href },
+                    { href: this.props.href, target: '_blank' },
                     React.createElement('img', { src: 'img/' + this.props.img + '.png', alt: this.props.alt, width: '50', height: '50',
                         onMouseOver: this.mouseOver, onMouseOut: this.mouseOut,
                         className: this.state.hover ? "iconHigh" : "" })
@@ -24738,33 +24740,46 @@ var SideLinkItem = React.createClass({
     displayName: 'SideLinkItem',
 
     getInitialState: function () {
-        return { hover: false };
+        return { clicked: false };
     },
-    mouseOver: function () {
-        this.setState({ hover: true });
+    clickedThis: function () {
+        this.setState({ clicked: true });
     },
-    mouseOut: function () {
-        this.setState({ hover: false });
+    clickedOther: function () {
+        this.setState({ clicked: false });
     },
     render: function () {
 
-        var divStyle = {
-            textAlign: 'center',
-            marginBottom: '25px',
+        var rowStyle = {
             fontFamily: 'Baumans'
         },
             linkStyle = {
             textDecoration: 'none',
-            color: this.state.hover ? "yellow" : "#153e9d"
+            color: this.state.clicked ? 'white' : ''
+        },
+            iconStyle = {
+            textAlign: 'center',
+            verticalAlign: 'bottom',
+            background: '#E88A0C',
+            color: 'black',
+            marginLeft: '10%'
         };
 
         return React.createElement(
             'div',
-            { className: 'sideItem', style: divStyle },
+            { className: 'row', style: rowStyle },
             React.createElement(
                 Link,
-                { to: '/' + this.props.href, style: linkStyle,
-                    onMouseOver: this.mouseOver, onMouseOut: this.mouseOut },
+                { to: '/' + this.props.href, style: linkStyle },
+                React.createElement(
+                    'div',
+                    { className: 'sideItemIcon col-xs-3', style: iconStyle },
+                    React.createElement('i', { className: "fa " + this.props.icon, 'aria-hidden': 'true' })
+                )
+            ),
+            React.createElement(
+                Link,
+                { className: 'sideItemText' + (this.state.clicked ? '' : ' roll'), to: '/' + this.props.href, style: linkStyle },
                 this.props.text
             )
         );
@@ -24782,6 +24797,27 @@ var SideLinkItem = require('./SideLinkItem.jsx');
 var SideLinks = React.createClass({
     displayName: 'SideLinks',
 
+    getInitialState: function () {
+        return { hover: false };
+    },
+    mouseOver: function () {
+        this.setState({ hover: true });
+    },
+    mouseOut: function () {
+        this.setState({ hover: false });
+    },
+    clicked: function (event) {
+        var url = window.location.pathname,
+            page = url.substring(1, url.length);
+
+        for (ref in this.refs) {
+            if (page == ref) {
+                this.refs[ref].clickedThis();
+            } else {
+                this.refs[ref].clickedOther();
+            }
+        }
+    },
     render: function () {
 
         var linkStyle = {
@@ -24789,24 +24825,26 @@ var SideLinks = React.createClass({
         },
             iconStyle = {
             textAlign: 'center',
-            color: 'yellow',
+            color: '#F4C842',
             display: 'block',
             marginBottom: '25',
-            fontSize: '2em'
+            fontSize: '2em',
+            textShadow: this.state.hover ? '0 0 20px black' : ''
         };
 
         return React.createElement(
             'div',
-            { id: 'sideLinks' },
+            { id: 'sideLinks', onClick: this.clicked },
             React.createElement(
                 Link,
                 { to: '/', style: linkStyle },
-                React.createElement('i', { className: 'fa fa-3x fa-home', 'aria-hidden': 'true', style: iconStyle })
+                React.createElement('i', { className: 'fa fa-3x fa-home', 'aria-hidden': 'true', style: iconStyle,
+                    onMouseOver: this.mouseOver, onMouseOut: this.mouseOut })
             ),
-            React.createElement(SideLinkItem, { href: 'projects', text: 'Projects' }),
-            React.createElement(SideLinkItem, { href: 'skills', text: 'Skills' }),
-            React.createElement(SideLinkItem, { href: 'resume', text: 'Resume' }),
-            React.createElement(SideLinkItem, { href: 'about', text: 'About' })
+            React.createElement(SideLinkItem, { href: 'projects', ref: 'projects', text: '  Projects  ', icon: 'fa-cogs' }),
+            React.createElement(SideLinkItem, { href: 'skills', ref: 'skills', text: '  Skills  ', icon: 'fa-code' }),
+            React.createElement(SideLinkItem, { href: 'resume', ref: 'resume', text: '  Résumé  ', icon: 'fa-file-text-o' }),
+            React.createElement(SideLinkItem, { href: 'about', ref: 'about', text: '  About  ', icon: 'fa-user' })
         );
     }
 });
@@ -24829,7 +24867,7 @@ var Sidebar = React.createClass({
 
         return React.createElement(
             'div',
-            { style: sidebarStyle },
+            { style: sidebarStyle, id: 'sideBar' },
             React.createElement(SideHeader, null),
             React.createElement(SideLinks, null)
         );
@@ -24859,7 +24897,7 @@ var SmallIcon = React.createClass({
             { className: 'row smallIcon' },
             React.createElement(
                 'a',
-                { href: this.props.href },
+                { href: this.props.href, target: '_blank' },
                 React.createElement('img', { src: 'img/' + this.props.img + '.png', alt: this.props.alt, width: '35', height: '35',
                     onMouseOver: this.mouseOver, onMouseOut: this.mouseOut,
                     className: this.state.hover ? "iconHigh" : "" })

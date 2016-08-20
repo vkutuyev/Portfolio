@@ -14,7 +14,7 @@ var SmallIcon = React.createClass({
     render: function() {
         return (
             <div className='row smallIcon'>
-                <a href={this.props.href}>
+                <a href={this.props.href} target="_blank">
                     <img src={'img/'+this.props.img+'.png'} alt={this.props.alt} width='35' height='35'
                     onMouseOver={this.mouseOver} onMouseOut={this.mouseOut}
                     className={this.state.hover ? "iconHigh" : ""}/>

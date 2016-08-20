@@ -8,9 +8,18 @@ var adjustPic = function() {
     });
 };
 
+// Keep sidebar widths consistent on resizes
+var matchSideSize = function() {
+    var sideSize = $('#sideBar').css('width'),
+        newSize = parseFloat(sideSize.substring(0,sideSize.length-2)) + 50,
+        finalSize = newSize + 'px';
+    $('#sideLinks').attr('width', finalSize);
+};
+
 window.onload = function() {
     Sticker.init('.profile');
     adjustPic();
+    linkify('a');
 };
 
 window.onresize = function() {
@@ -22,5 +31,19 @@ window.onresize = function() {
         $('#contentWindow').removeClass('col-xs-6');
         $('#contentWindow').addClass('col-xs-9');
     }
+
+    if(window.innerWidth < 965){
+        $('.sideItemText').css('display', 'none');
+        $('.sideItemIcon').css('color', 'white');
+        $('.sideItemIcon').removeClass('col-xs-3');
+        $('.sideItemIcon').addClass('col-xs-8 col-xs-offset-2');
+    }
+    else{
+        $('.sideItemText').css('display', 'inline-block');
+        $('.sideItemIcon').css('color', 'black');
+        $('.sideItemIcon').removeClass('col-xs-8 col-xs-offset-2');
+        $('.sideItemIcon').addClass('col-xs-3');
+    }
+
     adjustPic();
 };

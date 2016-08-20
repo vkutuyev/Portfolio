@@ -11,7 +11,7 @@ var Sidebar = React.createClass({
         };
 
         return (
-            <div style={sidebarStyle}>
+            <div style={sidebarStyle} id='sideBar'>
                 <SideHeader />
                 <SideLinks />
             </div>

@@ -1,12 +1,14 @@
 var React = require('react');
 var Sidebar = require('../sidebar/Sidebar.jsx');
+var ReactRouter = require('react-router');
+var Link = ReactRouter.Link;
 
 
 var BasePage = React.createClass({
     render: function() {
 
         var sideStyle = {
-                height: '100vh',
+                height: window.innerHeight,
                 color: 'white',
                 background: '#0D2F7D',
                 padding: '25',
@@ -19,7 +21,7 @@ var BasePage = React.createClass({
         return (
             <div className='container'>
                 {/* <div className='row'> */}
-                    <div className='col-xs-3' style={sideStyle}>
+                    <div className='col-xs-3' style={sideStyle} id='sideWindow'>
                         <Sidebar />
                     </div>
                     <div className='col-xs-9' style={mainStyle} id='contentWindow'>

@@ -5,30 +5,39 @@ var Link = ReactRouter.Link;
 
 var SideLinkItem = React.createClass({
     getInitialState: function() {
-        return {hover: false};
+        return {clicked: false};
     },
-    mouseOver: function() {
-        this.setState({hover: true});
+    clickedThis: function() {
+        this.setState({clicked: true});
     },
-    mouseOut: function() {
-        this.setState({hover: false});
+    clickedOther: function() {
+        this.setState({clicked: false});
     },
     render: function() {
 
-        var divStyle = {
-                textAlign: 'center',
-                marginBottom: '25px',
+        var rowStyle = {
                 fontFamily: 'Baumans'
             },
             linkStyle = {
                 textDecoration: 'none',
-                color: this.state.hover ? "yellow" : "#153e9d"
+                color: this.state.clicked ? 'white' : ''
+            },
+            iconStyle = {
+                textAlign: 'center',
+                verticalAlign: 'bottom',
+                background: '#E88A0C',
+                color: 'black',
+                marginLeft: '10%'
             };
 
         return (
-            <div className='sideItem' style={divStyle}>
-                <Link to={'/'+this.props.href} style={linkStyle}
-                onMouseOver={this.mouseOver} onMouseOut={this.mouseOut}>
+            <div className='row' style={rowStyle}>
+                <Link to={'/'+this.props.href} style={linkStyle}>
+                    <div className='sideItemIcon col-xs-3' style={iconStyle}>
+                        <i className={"fa "+this.props.icon} aria-hidden="true"></i>
+                    </div>
+                </Link>
+                <Link className={'sideItemText' + (this.state.clicked ? '' : ' roll')} to={'/'+this.props.href} style={linkStyle}>
                     {this.props.text}
                 </Link>
             </div>
