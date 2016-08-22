@@ -37,10 +37,10 @@
     position: absolute;
     left: 0;
     top: 0;
-    /*padding: 0 2px;*/
+    padding: 0 2px;
 
     color: #fff;
-    background: #E88A0C;
+    background: #FFB347;
 
     -webkit-transform-origin: 50% 0%;
        -moz-transform-origin: 50% 0%;

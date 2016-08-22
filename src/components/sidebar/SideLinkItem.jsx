@@ -25,7 +25,7 @@ var SideLinkItem = React.createClass({
             iconStyle = {
                 textAlign: 'center',
                 verticalAlign: 'bottom',
-                background: '#E88A0C',
+                background: '#FFB347',
                 color: 'black',
                 marginLeft: '10%'
             };
@@ -46,17 +46,3 @@ var SideLinkItem = React.createClass({
 });
 
 module.exports = SideLinkItem;
-
-
-// #EB593C
-// #333333
-// #FFFCEC
-// #ABDCD6
-// #222222
-// #D11250
-// #DB5800
-// rgb(0, 104, 153)
-// #008F68
-// #333399
-// #3399FF
-// #0D1116
