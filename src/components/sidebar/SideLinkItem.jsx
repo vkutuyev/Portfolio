@@ -20,7 +20,7 @@ var SideLinkItem = React.createClass({
             },
             linkStyle = {
                 textDecoration: 'none',
-                color: this.state.clicked ? 'white' : ''
+                color: this.state.clicked ? 'white' : '#66CCFF'
             },
             iconStyle = {
                 textAlign: 'center',
@@ -37,7 +37,7 @@ var SideLinkItem = React.createClass({
                         <i className={"fa "+this.props.icon} aria-hidden="true"></i>
                     </div>
                 </Link>
-                <Link className={'sideItemText' + (this.state.clicked ? '' : ' roll')} to={'/'+this.props.href} style={linkStyle}>
+                <Link testThing='Test' className={'sideItemText' + (this.state.clicked ? '' : ' roll')} to={'/'+this.props.href} style={linkStyle}>
                     {this.props.text}
                 </Link>
             </div>
@@ -46,3 +46,17 @@ var SideLinkItem = React.createClass({
 });
 
 module.exports = SideLinkItem;
+
+
+// #EB593C
+// #333333
+// #FFFCEC
+// #ABDCD6
+// #222222
+// #D11250
+// #DB5800
+// rgb(0, 104, 153)
+// #008F68
+// #333399
+// #3399FF
+// #0D1116

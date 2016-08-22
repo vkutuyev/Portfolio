@@ -25,7 +25,7 @@ worker.addEventListener("message", function(event) {
         n0 = frontier.length,
         i1,
         // color = d3.hsl((distance += .5) % 360, 1, .5).rgb();
-        color = d3.rgb(21, 62, 157);
+        color = d3.rgb( 0, 153, 204);
 
     for (var i = 0; i < n0; ++i) {
       i0 = frontier[i] << 2;

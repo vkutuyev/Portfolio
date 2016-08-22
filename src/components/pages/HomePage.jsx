@@ -5,7 +5,7 @@ var HomePage = React.createClass({
     render: function() {
         return (
             <div className='row'>
-                <img src='img/SFShadow.png' alt="BG" width='100%' />
+                <img className='mainHeadImg' src='img/SFShadow.png' alt="BG" width='100%' />
             </div>
         );
     }

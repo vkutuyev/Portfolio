@@ -1,5 +1,5 @@
 body {
-    background: #0D2F7D;
+    background: #003399;
     color: white;
     font-size: 3em;
     width: 100vw;
@@ -24,3 +24,17 @@ body {
     z-index: 1;
     margin: 0 auto;
 }
+
+
+
+/********Animations*********/
+.mainHeadImg {
+    animation-duration: 2s;
+    animation-name: fadeAnim;
+}
+
+@keyframes fadeAnim {
+  0%   { opacity: 0; }
+  100% { opacity: 1; }
+}
+/***************************/

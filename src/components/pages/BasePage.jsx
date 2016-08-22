@@ -10,7 +10,7 @@ var BasePage = React.createClass({
         var sideStyle = {
                 height: window.innerHeight,
                 color: 'white',
-                background: '#0D2F7D',
+                background: '#003399',
                 padding: '25',
                 minWidth: '155'
             },
