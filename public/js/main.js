@@ -24479,7 +24479,7 @@ var Routes = React.createElement(
 
 module.exports = Routes;
 
-},{"./components/pages/AboutPage.jsx":223,"./components/pages/BasePage.jsx":224,"./components/pages/HomePage.jsx":228,"./components/pages/ProjectPage.jsx":229,"./components/pages/ResumePage.jsx":230,"./components/pages/SkillsPage.jsx":231,"react":219,"react-router":82}],223:[function(require,module,exports){
+},{"./components/pages/AboutPage.jsx":223,"./components/pages/BasePage.jsx":224,"./components/pages/HomePage.jsx":228,"./components/pages/ProjectPage.jsx":230,"./components/pages/ResumePage.jsx":231,"./components/pages/SkillsPage.jsx":232,"react":219,"react-router":82}],223:[function(require,module,exports){
 var React = require('react');
 
 var AboutPage = React.createClass({
@@ -24537,7 +24537,7 @@ var BasePage = React.createClass({
 
 module.exports = BasePage;
 
-},{"../sidebar/Sidebar.jsx":236,"react":219,"react-router":82}],225:[function(require,module,exports){
+},{"../sidebar/Sidebar.jsx":237,"react":219,"react-router":82}],225:[function(require,module,exports){
 var React = require('react');
 
 var DataSkill = React.createClass({
@@ -24608,21 +24608,125 @@ module.exports = HomePage;
 },{"react":219}],229:[function(require,module,exports){
 var React = require('react');
 
-var ProjectPage = React.createClass({
-    displayName: 'ProjectPage',
+var ProjectDetailPage = React.createClass({
+    displayName: 'ProjectDetailPage',
 
     render: function () {
+
+        var projects = {
+            '': {
+                'desc': '',
+                'tech': '',
+                'img': ''
+            },
+            'Letters4Animals': {
+                'desc': 'L4A description',
+                'tech': 'HTML, CSS, API',
+                'img': 'l4alogo.png'
+            },
+            'CodeBoard': {
+                'desc': 'CodeBoard desc',
+                'tech': 'HTML5 Canvas, jQuery',
+                'img': 'codeBoardLogo.png'
+            }
+        };
+
         return React.createElement(
             'div',
             null,
-            'Projects!'
+            React.createElement(
+                'h1',
+                null,
+                'Project:'
+            ),
+            React.createElement(
+                'div',
+                { className: 'col-xs-12' },
+                React.createElement(
+                    'h1',
+                    null,
+                    'Name: ',
+                    this.props.projName
+                ),
+                React.createElement(
+                    'h1',
+                    null,
+                    'Description: ',
+                    projects[this.props.projName].desc
+                ),
+                React.createElement(
+                    'h1',
+                    null,
+                    'Tech Used: ',
+                    projects[this.props.projName].tech
+                )
+            )
+        );
+    }
+});
+
+module.exports = ProjectDetailPage;
+
+},{"react":219}],230:[function(require,module,exports){
+var React = require('react');
+var ProjectDetailPage = require('./ProjectDetailPage.jsx');
+
+var ProjectPage = React.createClass({
+    displayName: 'ProjectPage',
+
+    getInitialState: function () {
+        return { clicked: false, project: '' };
+    },
+    clickedLink: function (link) {
+        this.setState({ clicked: true });
+        this.setState({ project: link });
+    },
+    render: function () {
+
+        var mainStyle = {
+            padding: '25'
+        },
+            headerStyle = {
+            height: '35vh',
+            background: 'rgb(193, 110, 25)',
+            marginBottom: '25'
+        },
+            projectStyle = {
+            height: '50vh',
+            backgroundColor: this.state.clicked ? 'rgb(76, 215, 121)' : 'black',
+            padding: '25',
+            display: 'block'
+        };
+
+        return React.createElement(
+            'div',
+            { style: mainStyle },
+            React.createElement(
+                'div',
+                { style: headerStyle, className: 'row' },
+                React.createElement(
+                    'div',
+                    { className: 'col-xs-6', onClick: this.clickedLink.bind(this, 'Letters4Animals') },
+                    React.createElement('img', { src: 'http://lorempixel.com/900/500/', alt: 'Pic1', width: '100%' })
+                ),
+                React.createElement(
+                    'div',
+                    { className: 'col-xs-6', onClick: this.clickedLink.bind(this, 'CodeBoard') },
+                    React.createElement('img', { src: 'http://lorempixel.com/900/500/', alt: 'Pic2', width: '100%' })
+                )
+            ),
+            React.createElement(
+                'div',
+                { style: projectStyle, className: 'row' },
+                React.createElement(ProjectDetailPage, { projName: this.state.project })
+            )
         );
     }
 });
 
 module.exports = ProjectPage;
 
-},{"react":219}],230:[function(require,module,exports){
+},{"./ProjectDetailPage.jsx":229,"react":219}],231:[function(require,module,exports){
 var React = require('react');
 
 var ResumePage = React.createClass({
@@ -24639,7 +24743,7 @@ var ResumePage = React.createClass({
 
 module.exports = ResumePage;
 
-},{"react":219}],231:[function(require,module,exports){
+},{"react":219}],232:[function(require,module,exports){
 var React = require('react');
 var DesignSkill = require('./DesignSkill.jsx');
 var DevSkill = require('./DevSkill.jsx');
@@ -24725,47 +24829,20 @@ var SkillsPage = React.createClass({
     dataAnimStop: function () {
         this.state.dataHover = false;
     },
-    clickedDes: function () {
+    clicked: function (btn) {
         for (var ref in this.refs) {
             if (ref[ref.length - 1] == '1') {
                 this.refs[ref].style.display = 'none';
                 this.refs[ref].style.visibility = 'hidden';
             }
-        }
-        this.refs.design1.style.display = 'block';
-        this.refs.design1.style.visibility = 'visible';
-        this.refs.desBox.style.height = '100px';
-        this.refs.devBox.style.height = '80px';
-        this.refs.datBox.style.height = '80px';
-        this.state.clickedLink = 'des';
-    },
-    clickedDev: function () {
-        for (var ref in this.refs) {
-            if (ref[ref.length - 1] == '1') {
-                this.refs[ref].style.display = 'none';
-                this.refs[ref].style.visibility = 'hidden';
+            if (ref[ref.length - 1] == 'x') {
+                this.refs[ref].style.height = '80px';
             }
         }
-        this.refs.develop1.style.display = 'block';
-        this.refs.develop1.style.visibility = 'visible';
-        this.refs.desBox.style.height = '80px';
-        this.refs.devBox.style.height = '100px';
-        this.refs.datBox.style.height = '80px';
-        this.state.clickedLink = 'dev';
-    },
-    clickedDat: function () {
-        for (var ref in this.refs) {
-            if (ref[ref.length - 1] == '1') {
-                this.refs[ref].style.display = 'none';
-                this.refs[ref].style.visibility = 'hidden';
-            }
-        }
-        this.refs.data1.style.display = 'block';
-        this.refs.data1.style.visibility = 'visible';
-        this.refs.desBox.style.height = '80px';
-        this.refs.devBox.style.height = '80px';
-        this.refs.datBox.style.height = '100px';
-        this.state.clickedLink = 'dat';
+        this.refs[btn.ref].style.display = 'block';
+        this.refs[btn.ref].style.visibility = 'visible';
+        this.refs[btn.box].style.height = '100px';
+        this.state.clickedLink = btn.link;
     },
     render: function () {
 
@@ -24800,7 +24877,7 @@ var SkillsPage = React.createClass({
                 React.createElement(
                     'div',
                     { className: 'col-xs-4 leftHeaderBtn', style: headerBtnStyle,
-                        onMouseDown: this.clickedDes, ref: 'desBox' },
+                        onClick: this.clicked.bind(this, { box: 'desBox', ref: 'design1', link: 'des' }), ref: 'desBox' },
                     React.createElement(
                         'span',
                         null,
@@ -24810,13 +24887,15 @@ var SkillsPage = React.createClass({
                 React.createElement(
                     'div',
                     { className: 'col-xs-4 midHeaderBtn', style: headerBtnStyle,
-                        onMouseDown: this.clickedDev, onMouseOver: this.typingFix, onMouseOut: this.typingStop, ref: 'devBox' },
+                        onClick: this.clicked.bind(this, { box: 'devBox', ref: 'develop1', link: 'dev' }), ref: 'devBox',
+                        onMouseOver: this.typingFix, onMouseOut: this.typingStop },
                     this.state.midText
                 ),
                 React.createElement(
                     'div',
                     { className: 'col-xs-4 rightHeaderBtn', style: headerBtnStyle,
-                        onMouseDown: this.clickedDat, onMouseOver: this.dataAnim, onMouseOut: this.dataAnimStop, ref: 'datBox' },
+                        onClick: this.clicked.bind(this, { box: 'datBox', ref: 'data1', link: 'dat' }), ref: 'datBox',
+                        onMouseOver: this.dataAnim, onMouseOut: this.dataAnimStop },
                     'Database'
                 )
             ),
@@ -24854,7 +24933,7 @@ var SkillsPage = React.createClass({
 
 module.exports = SkillsPage;
 
-},{"./DataSkill.jsx":225,"./DesignSkill.jsx":226,"./DevSkill.jsx":227,"react":219}],232:[function(require,module,exports){
+},{"./DataSkill.jsx":225,"./DesignSkill.jsx":226,"./DevSkill.jsx":227,"react":219}],233:[function(require,module,exports){
 var React = require('react');
 
 var LargeIcon = React.createClass({
@@ -24905,7 +24984,7 @@ var LargeIcon = React.createClass({
 
 module.exports = LargeIcon;
 
-},{"react":219}],233:[function(require,module,exports){
+},{"react":219}],234:[function(require,module,exports){
 var React = require('react');
 var LargeIcon = require('./LargeIcon.jsx');
 var SmallIcon = require('./SmallIcon.jsx');
@@ -24980,7 +25059,7 @@ var SideHeader = React.createClass({
 
 module.exports = SideHeader;
 
-},{"./LargeIcon.jsx":232,"./SmallIcon.jsx":237,"react":219}],234:[function(require,module,exports){
+},{"./LargeIcon.jsx":233,"./SmallIcon.jsx":238,"react":219}],235:[function(require,module,exports){
 var React = require('react');
 var ReactRouter = require('react-router');
 var Link = ReactRouter.Link;
@@ -25037,7 +25116,7 @@ var SideLinkItem = React.createClass({
 
 module.exports = SideLinkItem;
 
-},{"react":219,"react-router":82}],235:[function(require,module,exports){
+},{"react":219,"react-router":82}],236:[function(require,module,exports){
 var React = require('react');
 var ReactRouter = require('react-router');
 var Link = ReactRouter.Link;
@@ -25100,7 +25179,7 @@ var SideLinks = React.createClass({
 
 module.exports = SideLinks;
 
-},{"./SideLinkItem.jsx":234,"react":219,"react-router":82}],236:[function(require,module,exports){
+},{"./SideLinkItem.jsx":235,"react":219,"react-router":82}],237:[function(require,module,exports){
 var React = require('react');
 var SideHeader = require('./SideHeader.jsx');
 var SideLinks = require('./SideLinks.jsx');
@@ -25125,7 +25204,7 @@ var Sidebar = React.createClass({
 
 module.exports = Sidebar;
 
-},{"./SideHeader.jsx":233,"./SideLinks.jsx":235,"react":219}],237:[function(require,module,exports){
+},{"./SideHeader.jsx":234,"./SideLinks.jsx":236,"react":219}],238:[function(require,module,exports){
 var React = require('react');
 
 var SmallIcon = React.createClass({
@@ -25157,11 +25236,11 @@ var SmallIcon = React.createClass({
 
 module.exports = SmallIcon;
 
-},{"react":219}],238:[function(require,module,exports){
+},{"react":219}],239:[function(require,module,exports){
 var React = require('react');
 var ReactDOM = require('react-dom');
 var Routes = require('./Routes.jsx');
 
 ReactDOM.render(Routes, document.getElementById('main'));
 
-},{"./Routes.jsx":222,"react":219,"react-dom":52}]},{},[238]);
+},{"./Routes.jsx":222,"react":219,"react-dom":52}]},{},[239]);

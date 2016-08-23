@@ -80,48 +80,20 @@ var SkillsPage = React.createClass({
     dataAnimStop: function() {
         this.state.dataHover = false;
     },
-    clickedDes: function(){
+    clicked: function(btn) {
         for(var ref in this.refs){
             if(ref[ref.length-1] == '1'){
                 this.refs[ref].style.display = 'none';
                 this.refs[ref].style.visibility = 'hidden';
             }
-        }
-        this.refs.design1.style.display = 'block';
-        this.refs.design1.style.visibility = 'visible';
-        this.refs.desBox.style.height = '100px';
-        this.refs.devBox.style.height = '80px';
-        this.refs.datBox.style.height = '80px';
-        this.state.clickedLink = 'des';
-
-    },
-    clickedDev: function(){
-        for(var ref in this.refs){
-            if(ref[ref.length-1] == '1'){
-                this.refs[ref].style.display = 'none';
-                this.refs[ref].style.visibility = 'hidden';
+            if(ref[ref.length-1] == 'x'){
+                this.refs[ref].style.height = '80px';
             }
         }
-        this.refs.develop1.style.display = 'block';
-        this.refs.develop1.style.visibility = 'visible';
-        this.refs.desBox.style.height = '80px';
-        this.refs.devBox.style.height = '100px';
-        this.refs.datBox.style.height = '80px';
-        this.state.clickedLink = 'dev';
-    },
-    clickedDat: function(){
-        for(var ref in this.refs){
-            if(ref[ref.length-1] == '1'){
-                this.refs[ref].style.display = 'none';
-                this.refs[ref].style.visibility = 'hidden';
-            }
-        }
-        this.refs.data1.style.display = 'block';
-        this.refs.data1.style.visibility = 'visible';
-        this.refs.desBox.style.height = '80px';
-        this.refs.devBox.style.height = '80px';
-        this.refs.datBox.style.height = '100px';
-        this.state.clickedLink = 'dat';
+        this.refs[btn.ref].style.display = 'block';
+        this.refs[btn.ref].style.visibility = 'visible';
+        this.refs[btn.box].style.height = '100px';
+        this.state.clickedLink = btn.link;
     },
     render: function() {
 
@@ -147,20 +119,21 @@ var SkillsPage = React.createClass({
                 fontFamily: 'Righteous'
             };
 
-
         return (
             <div>
                 <div className='skillsHeader row' style={headerRowStyle}>
                     <div className='col-xs-4 leftHeaderBtn' style={headerBtnStyle}
-                    onMouseDown={this.clickedDes} ref='desBox'>
+                    onClick={this.clicked.bind(this, {box: 'desBox', ref: 'design1', link: 'des'})} ref='desBox'>
                         <span>Design</span>
                     </div>
                     <div className='col-xs-4 midHeaderBtn' style={headerBtnStyle}
-                    onMouseDown={this.clickedDev} onMouseOver={this.typingFix} onMouseOut={this.typingStop} ref='devBox'>
+                    onClick={this.clicked.bind(this, {box: 'devBox', ref: 'develop1', link: 'dev'})} ref='devBox'
+                    onMouseOver={this.typingFix} onMouseOut={this.typingStop}>
                         {this.state.midText}
                     </div>
                     <div className='col-xs-4 rightHeaderBtn' style={headerBtnStyle}
-                    onMouseDown={this.clickedDat} onMouseOver={this.dataAnim} onMouseOut={this.dataAnimStop} ref='datBox'>
+                    onClick={this.clicked.bind(this, {box: 'datBox', ref: 'data1', link: 'dat'})} ref='datBox'
+                    onMouseOver={this.dataAnim} onMouseOut={this.dataAnimStop}>
                         Database
                     </div>
                 </div>
