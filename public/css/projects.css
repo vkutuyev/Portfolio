@@ -1,0 +1,20 @@
+.projectsHeader {
+    animation-duration: 0.7s;
+    animation-name: dropDown;
+    animation-timing-function: ease;
+}
+
+.projectHeaderBox {
+    filter: gray; /* IE6-9 */
+    -webkit-filter: grayscale(100%); /* Chrome 19+ & Safari 6+ */
+}
+    .projectHeaderBox:hover {
+        filter: none;
+        -webkit-filter: grayscale(0%);
+    }
+/********Animations*********/
+@keyframes dropDown {
+    0% { margin-top: -100%; }
+    100% { margin-top: 0%; }
+}
+/***************************/

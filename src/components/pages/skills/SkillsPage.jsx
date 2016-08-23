@@ -93,7 +93,6 @@ var SkillsPage = React.createClass({
         this.refs[btn.ref].style.display = 'block';
         this.refs[btn.ref].style.visibility = 'visible';
         this.refs[btn.box].style.height = '100px';
-        this.state.clickedLink = btn.link;
     },
     render: function() {
 
@@ -123,16 +122,16 @@ var SkillsPage = React.createClass({
             <div>
                 <div className='skillsHeader row' style={headerRowStyle}>
                     <div className='col-xs-4 leftHeaderBtn' style={headerBtnStyle}
-                    onClick={this.clicked.bind(this, {box: 'desBox', ref: 'design1', link: 'des'})} ref='desBox'>
+                    onClick={this.clicked.bind(this, {box: 'desBox', ref: 'design1'})} ref='desBox'>
                         <span>Design</span>
                     </div>
                     <div className='col-xs-4 midHeaderBtn' style={headerBtnStyle}
-                    onClick={this.clicked.bind(this, {box: 'devBox', ref: 'develop1', link: 'dev'})} ref='devBox'
+                    onClick={this.clicked.bind(this, {box: 'devBox', ref: 'develop1'})} ref='devBox'
                     onMouseOver={this.typingFix} onMouseOut={this.typingStop}>
                         {this.state.midText}
                     </div>
                     <div className='col-xs-4 rightHeaderBtn' style={headerBtnStyle}
-                    onClick={this.clicked.bind(this, {box: 'datBox', ref: 'data1', link: 'dat'})} ref='datBox'
+                    onClick={this.clicked.bind(this, {box: 'datBox', ref: 'data1'})} ref='datBox'
                     onMouseOver={this.dataAnim} onMouseOut={this.dataAnimStop}>
                         Database
                     </div>

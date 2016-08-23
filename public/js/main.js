@@ -24451,15 +24451,13 @@ var Router = ReactRouter.Router;
 var Route = ReactRouter.Route;
 var IndexRoute = ReactRouter.IndexRoute;
 var browHist = ReactRouter.browserHistory;
-// var hashHist = ReactRouter.hashHistory;
-
 
 // Views
 var BasePage = require('./components/pages/BasePage.jsx');
 var HomePage = require('./components/pages/HomePage.jsx');
 var AboutPage = require('./components/pages/AboutPage.jsx');
-var ProjectPage = require('./components/pages/ProjectPage.jsx');
-var SkillsPage = require('./components/pages/SkillsPage.jsx');
+var ProjectPage = require('./components/pages/projects/ProjectPage.jsx');
+var SkillsPage = require('./components/pages/skills/SkillsPage.jsx');
 var ResumePage = require('./components/pages/ResumePage.jsx');
 
 // Routes
@@ -24479,7 +24477,7 @@ var Routes = React.createElement(
 
 module.exports = Routes;
 
-},{"./components/pages/AboutPage.jsx":223,"./components/pages/BasePage.jsx":224,"./components/pages/HomePage.jsx":228,"./components/pages/ProjectPage.jsx":230,"./components/pages/ResumePage.jsx":231,"./components/pages/SkillsPage.jsx":232,"react":219,"react-router":82}],223:[function(require,module,exports){
+},{"./components/pages/AboutPage.jsx":223,"./components/pages/BasePage.jsx":224,"./components/pages/HomePage.jsx":225,"./components/pages/ResumePage.jsx":226,"./components/pages/projects/ProjectPage.jsx":229,"./components/pages/skills/SkillsPage.jsx":233,"react":219,"react-router":82}],223:[function(require,module,exports){
 var React = require('react');
 
 var AboutPage = React.createClass({
@@ -24537,58 +24535,7 @@ var BasePage = React.createClass({
 
 module.exports = BasePage;
 
-},{"../sidebar/Sidebar.jsx":237,"react":219,"react-router":82}],225:[function(require,module,exports){
-var React = require('react');
-
-var DataSkill = React.createClass({
-    displayName: 'DataSkill',
-
-    render: function () {
-        return React.createElement(
-            'div',
-            null,
-            'Database'
-        );
-    }
-});
-
-module.exports = DataSkill;
-
-},{"react":219}],226:[function(require,module,exports){
-var React = require('react');
-
-var DesignSkill = React.createClass({
-    displayName: 'DesignSkill',
-
-    render: function () {
-        return React.createElement(
-            'div',
-            null,
-            'Design'
-        );
-    }
-});
-
-module.exports = DesignSkill;
-
-},{"react":219}],227:[function(require,module,exports){
-var React = require('react');
-
-var DevSkill = React.createClass({
-    displayName: 'DevSkill',
-
-    render: function () {
-        return React.createElement(
-            'div',
-            null,
-            'Development'
-        );
-    }
-});
-
-module.exports = DevSkill;
-
-},{"react":219}],228:[function(require,module,exports){
+},{"../sidebar/Sidebar.jsx":238,"react":219,"react-router":82}],225:[function(require,module,exports){
 var React = require('react');
 
 var HomePage = React.createClass({
@@ -24605,128 +24552,7 @@ var HomePage = React.createClass({
 
 module.exports = HomePage;
 
-},{"react":219}],229:[function(require,module,exports){
-var React = require('react');
-
-var ProjectDetailPage = React.createClass({
-    displayName: 'ProjectDetailPage',
-
-    render: function () {
-
-        var projects = {
-            '': {
-                'desc': '',
-                'tech': '',
-                'img': ''
-            },
-            'Letters4Animals': {
-                'desc': 'L4A description',
-                'tech': 'HTML, CSS, API',
-                'img': 'l4alogo.png'
-            },
-            'CodeBoard': {
-                'desc': 'CodeBoard desc',
-                'tech': 'HTML5 Canvas, jQuery',
-                'img': 'codeBoardLogo.png'
-            }
-        };
-
-        return React.createElement(
-            'div',
-            null,
-            React.createElement(
-                'h1',
-                null,
-                'Project:'
-            ),
-            React.createElement(
-                'div',
-                { className: 'col-xs-12' },
-                React.createElement(
-                    'h1',
-                    null,
-                    'Name: ',
-                    this.props.projName
-                ),
-                React.createElement(
-                    'h1',
-                    null,
-                    'Description: ',
-                    projects[this.props.projName].desc
-                ),
-                React.createElement(
-                    'h1',
-                    null,
-                    'Tech Used: ',
-                    projects[this.props.projName].tech
-                )
-            )
-        );
-    }
-});
-
-module.exports = ProjectDetailPage;
-
-},{"react":219}],230:[function(require,module,exports){
-var React = require('react');
-var ProjectDetailPage = require('./ProjectDetailPage.jsx');
-
-var ProjectPage = React.createClass({
-    displayName: 'ProjectPage',
-
-    getInitialState: function () {
-        return { clicked: false, project: '' };
-    },
-    clickedLink: function (link) {
-        this.setState({ clicked: true });
-        this.setState({ project: link });
-    },
-    render: function () {
-
-        var mainStyle = {
-            padding: '25'
-        },
-            headerStyle = {
-            height: '35vh',
-            background: 'rgb(193, 110, 25)',
-            marginBottom: '25'
-        },
-            projectStyle = {
-            height: '50vh',
-            backgroundColor: this.state.clicked ? 'rgb(76, 215, 121)' : 'black',
-            padding: '25',
-            display: 'block'
-        };
-
-        return React.createElement(
-            'div',
-            { style: mainStyle },
-            React.createElement(
-                'div',
-                { style: headerStyle, className: 'row' },
-                React.createElement(
-                    'div',
-                    { className: 'col-xs-6', onClick: this.clickedLink.bind(this, 'Letters4Animals') },
-                    React.createElement('img', { src: 'http://lorempixel.com/900/500/', alt: 'Pic1', width: '100%' })
-                ),
-                React.createElement(
-                    'div',
-                    { className: 'col-xs-6', onClick: this.clickedLink.bind(this, 'CodeBoard') },
-                    React.createElement('img', { src: 'http://lorempixel.com/900/500/', alt: 'Pic2', width: '100%' })
-                )
-            ),
-            React.createElement(
-                'div',
-                { style: projectStyle, className: 'row' },
-                React.createElement(ProjectDetailPage, { projName: this.state.project })
-            )
-        );
-    }
-});
-
-module.exports = ProjectPage;
-
-},{"./ProjectDetailPage.jsx":229,"react":219}],231:[function(require,module,exports){
+},{"react":219}],226:[function(require,module,exports){
 var React = require('react');
 
 var ResumePage = React.createClass({
@@ -24743,7 +24569,326 @@ var ResumePage = React.createClass({
 
 module.exports = ResumePage;
 
+},{"react":219}],227:[function(require,module,exports){
+var React = require('react');
+
+var ProjectDetailPage = React.createClass({
+    displayName: 'ProjectDetailPage',
+
+
+    render: function () {
+
+        var projects = {
+            '': {
+                'desc': '',
+                'tech': '',
+                'img': ''
+            },
+            'Letters4Animals': {
+                'name': "Letters4Animals",
+                'desc': "Designed, developed, and deployed a fully functional website in four weeks for a non-profit that utilizes multiple APIs in order to generate and pre-populate a letter that a user can send to their respective representative. Worked on all aspects of the website but was mostly in charge of connecting the back-end functionality to the front-end letter presentation, including smoothly integrating multiple APIs in order to retrieve the appropriate government official based on a selected cause and the user's location. Researched and implemented methods for presenting a letter to a user, as well as giving them the convenient ability to print the presented letter out or save it as a PDF.",
+                'tech': 'Node.js, AngularJS, PostgreSQL, Express.js, Bootstrap, jQuery, Google Civics API, Google Geocoder API, OpenStates API, Twilio, and several 3rd party Angular modules',
+                'img': 'l4alogo.png',
+                'url': 'http://www.letters4animals.org/'
+            },
+            'CodeBoard': {
+                'name': "CodeBoard",
+                'desc': "An online, collaborative whiteboard that lets users share code, draw on an HTML5 Canvas whiteboard, and chat with each other in realtime. Features the ability to save whiteboards, join pre-made lobbies, and share/work on large snippets of code with others online. Can be used as a teaching tool or as a debugging tool during a project’s development cycle. Made in three days as part of a two-person team.",
+                'tech': 'Node.js, AngularJS, Express.js, socket.io, HTML5, jQuery',
+                'img': 'codeBoardLogo.png',
+                'url': 'http://52.41.164.18/#/'
+            },
+            'WeatherShouldIGo': {
+                'name': "#Weather Should I Go?",
+                'desc': "Built a website in four days as part of a team of 4 that lets users plan trips based on the weather. Users can select a specific type of weather, see instagram photos of a selected destination, and get an Expedia link to the appropriate destination based on the user's location.",
+                'tech': 'HTML5, CSS3, Javascript, jQuery, PHP, MySQL, Ajax, Open Weather API, Google Maps API, Instagram API',
+                'img': 'weatherLogo.png',
+                'url': 'http://weather-should-i-go.sharolchand.com/'
+            },
+            'ProceduralGame': {
+                'name': "The Procedural Game",
+                'desc': "A side-scrolling platformer with logically randomized, procedural level generation. Features three different play modes, a tutorial section with an AI-controller demonstration of the game, a dynamic difficulty that increases as the player gets further,  and a persistent score system that stores a user’s best score in an online database. Built in four days as a solo project and created completely programmatically with 1,700 lines of code in Xcode.",
+                'tech': "Swift, Xcode SpriteKit, Google Firebase",
+                'img': 'gameLogo.png'
+            }
+        },
+            textStyle = {
+            textAlign: 'center',
+            fontFamily: 'Baumans'
+        },
+            titleStyle = {
+            textShadow: '1px 1px 1px black',
+            textAlign: 'center',
+            margin: '0 auto 10px auto'
+        },
+            descStyle = {
+            textShadow: '1px 1px 1px black'
+        },
+            techStyle = {
+            textShadow: '1px 1px 1px black',
+            textAlign: 'center',
+            margin: '10px auto 0 auto'
+        },
+            linkStyle = {
+            textDecoration: 'none',
+            color: '#FFB347'
+        };
+
+        return React.createElement(
+            'div',
+            null,
+            React.createElement(
+                'div',
+                { className: 'row', style: titleStyle },
+                React.createElement(
+                    'h1',
+                    null,
+                    React.createElement(
+                        'a',
+                        { href: projects[this.props.projName].url || 'javascript:void(0);', target: '_blank', style: linkStyle },
+                        projects[this.props.projName].name
+                    )
+                )
+            ),
+            React.createElement(
+                'div',
+                { className: 'row' },
+                React.createElement(
+                    'div',
+                    { className: 'col-xs-8' },
+                    'Image'
+                ),
+                React.createElement(
+                    'div',
+                    { className: 'col-xs-4', style: textStyle },
+                    React.createElement(
+                        'div',
+                        { className: 'row', style: descStyle },
+                        React.createElement(
+                            'h4',
+                            null,
+                            projects[this.props.projName].desc
+                        )
+                    )
+                )
+            ),
+            React.createElement(
+                'div',
+                { className: 'row', style: techStyle },
+                React.createElement(
+                    'h4',
+                    null,
+                    React.createElement(
+                        'u',
+                        null,
+                        'Tech Used'
+                    )
+                ),
+                React.createElement(
+                    'h5',
+                    null,
+                    projects[this.props.projName].tech
+                )
+            )
+        );
+    }
+});
+
+module.exports = ProjectDetailPage;
+
+},{"react":219}],228:[function(require,module,exports){
+var React = require('react');
+
+var ProjectHeaderItem = React.createClass({
+    displayName: 'ProjectHeaderItem',
+
+    render: function () {
+
+        var headerItemStyle = {
+            height: '160px',
+            textAlign: 'center',
+            boxShadow: '0px 0px 2px black',
+            border: '1px solid black',
+            borderBottomLeftRadius: this.props.project == 'Letters4Animals' ? '25' : '0',
+            borderBottomRightRadius: this.props.project == 'ProceduralGame' ? '25' : '0'
+        },
+            projectBoxStyle = {
+            height: '120px',
+            fontSize: '1em',
+            background: 'blue',
+            margin: 0,
+            padding: 0
+        },
+            projectLabelStyle = {
+            height: '40px',
+            minHeight: '40px',
+            lineHeight: '40px',
+            fontSize: '0.6em',
+            verticalAlign: 'middle',
+            backgroundColor: 'rgb(185, 193, 180)',
+            color: 'white',
+            textShadow: '1px 1px 2px black',
+            borderBottom: '1px solid black',
+            borderBottomLeftRadius: this.props.project == 'Letters4Animals' ? '25' : '0',
+            borderBottomRightRadius: this.props.project == 'ProceduralGame' ? '25' : '0'
+        },
+            thumbStyle = {
+            margin: 'auto auto',
+            display: 'block'
+        };
+
+        return React.createElement(
+            'div',
+            { className: 'row projectHeaderBox', style: headerItemStyle },
+            React.createElement(
+                'div',
+                { className: 'col-xs-12', style: projectBoxStyle },
+                React.createElement('img', { src: 'img/test.png', width: '100%', alt: 'Project', style: thumbStyle })
+            ),
+            React.createElement(
+                'div',
+                { className: 'col-xs-12', style: projectLabelStyle },
+                this.props.project
+            )
+        );
+    }
+});
+
+module.exports = ProjectHeaderItem;
+
+},{"react":219}],229:[function(require,module,exports){
+var React = require('react');
+var ProjectHeaderItem = require('./ProjectHeaderItem.jsx');
+var ProjectDetail = require('./ProjectDetail.jsx');
+
+var ProjectPage = React.createClass({
+    displayName: 'ProjectPage',
+
+    getInitialState: function () {
+        return { clicked: false, project: '' };
+    },
+    clickedLink: function (link) {
+        this.setState({ clicked: true });
+        this.setState({ project: link });
+    },
+    render: function () {
+
+        var mainStyle = {
+            paddingLeft: '25',
+            paddingRight: '25',
+            fontFamily: 'Righteous'
+        },
+            headerStyle = {
+            height: '20vh',
+            marginBottom: '15'
+        },
+            projectStyle = {
+            height: '55vh',
+            padding: '25',
+            display: this.state.clicked ? 'block' : 'none'
+        },
+            defaultStyle = {
+            margin: '0 auto',
+            textAlign: 'center',
+            textShadow: '1px 1px 2px black',
+            display: this.state.clicked ? 'none' : 'block'
+        };
+
+        return React.createElement(
+            'div',
+            { style: mainStyle },
+            React.createElement(
+                'div',
+                { style: headerStyle, className: 'row projectsHeader' },
+                React.createElement(
+                    'div',
+                    { className: 'col-xs-3', onClick: this.clickedLink.bind(this, 'Letters4Animals') },
+                    React.createElement(ProjectHeaderItem, { project: 'Letters4Animals' })
+                ),
+                React.createElement(
+                    'div',
+                    { className: 'col-xs-3', onClick: this.clickedLink.bind(this, 'CodeBoard') },
+                    React.createElement(ProjectHeaderItem, { project: 'CodeBoard' })
+                ),
+                React.createElement(
+                    'div',
+                    { className: 'col-xs-3', onClick: this.clickedLink.bind(this, 'WeatherShouldIGo') },
+                    React.createElement(ProjectHeaderItem, { project: 'WeatherShouldIGo' })
+                ),
+                React.createElement(
+                    'div',
+                    { className: 'col-xs-3', onClick: this.clickedLink.bind(this, 'ProceduralGame') },
+                    React.createElement(ProjectHeaderItem, { project: 'ProceduralGame' })
+                )
+            ),
+            React.createElement(
+                'div',
+                { className: 'row', style: defaultStyle },
+                'Select Project'
+            ),
+            React.createElement(
+                'div',
+                { style: projectStyle, className: 'row' },
+                React.createElement(ProjectDetail, { projName: this.state.project })
+            )
+        );
+    }
+});
+
+module.exports = ProjectPage;
+
+},{"./ProjectDetail.jsx":227,"./ProjectHeaderItem.jsx":228,"react":219}],230:[function(require,module,exports){
+var React = require('react');
+
+var DataSkill = React.createClass({
+    displayName: 'DataSkill',
+
+    render: function () {
+        return React.createElement(
+            'div',
+            null,
+            'Database'
+        );
+    }
+});
+
+module.exports = DataSkill;
+
+},{"react":219}],231:[function(require,module,exports){
+var React = require('react');
+
+var DesignSkill = React.createClass({
+    displayName: 'DesignSkill',
+
+    render: function () {
+        return React.createElement(
+            'div',
+            null,
+            'Design'
+        );
+    }
+});
+
+module.exports = DesignSkill;
+
 },{"react":219}],232:[function(require,module,exports){
+var React = require('react');
+
+var DevSkill = React.createClass({
+    displayName: 'DevSkill',
+
+    render: function () {
+        return React.createElement(
+            'div',
+            null,
+            'Development'
+        );
+    }
+});
+
+module.exports = DevSkill;
+
+},{"react":219}],233:[function(require,module,exports){
 var React = require('react');
 var DesignSkill = require('./DesignSkill.jsx');
 var DevSkill = require('./DevSkill.jsx');
@@ -24842,7 +24987,6 @@ var SkillsPage = React.createClass({
         this.refs[btn.ref].style.display = 'block';
         this.refs[btn.ref].style.visibility = 'visible';
         this.refs[btn.box].style.height = '100px';
-        this.state.clickedLink = btn.link;
     },
     render: function () {
 
@@ -24877,7 +25021,7 @@ var SkillsPage = React.createClass({
                 React.createElement(
                     'div',
                     { className: 'col-xs-4 leftHeaderBtn', style: headerBtnStyle,
-                        onClick: this.clicked.bind(this, { box: 'desBox', ref: 'design1', link: 'des' }), ref: 'desBox' },
+                        onClick: this.clicked.bind(this, { box: 'desBox', ref: 'design1' }), ref: 'desBox' },
                     React.createElement(
                         'span',
                         null,
@@ -24887,14 +25031,14 @@ var SkillsPage = React.createClass({
                 React.createElement(
                     'div',
                     { className: 'col-xs-4 midHeaderBtn', style: headerBtnStyle,
-                        onClick: this.clicked.bind(this, { box: 'devBox', ref: 'develop1', link: 'dev' }), ref: 'devBox',
+                        onClick: this.clicked.bind(this, { box: 'devBox', ref: 'develop1' }), ref: 'devBox',
                         onMouseOver: this.typingFix, onMouseOut: this.typingStop },
                     this.state.midText
                 ),
                 React.createElement(
                     'div',
                     { className: 'col-xs-4 rightHeaderBtn', style: headerBtnStyle,
-                        onClick: this.clicked.bind(this, { box: 'datBox', ref: 'data1', link: 'dat' }), ref: 'datBox',
+                        onClick: this.clicked.bind(this, { box: 'datBox', ref: 'data1' }), ref: 'datBox',
                         onMouseOver: this.dataAnim, onMouseOut: this.dataAnimStop },
                     'Database'
                 )
@@ -24933,7 +25077,7 @@ var SkillsPage = React.createClass({
 
 module.exports = SkillsPage;
 
-},{"./DataSkill.jsx":225,"./DesignSkill.jsx":226,"./DevSkill.jsx":227,"react":219}],233:[function(require,module,exports){
+},{"./DataSkill.jsx":230,"./DesignSkill.jsx":231,"./DevSkill.jsx":232,"react":219}],234:[function(require,module,exports){
 var React = require('react');
 
 var LargeIcon = React.createClass({
@@ -24984,7 +25128,7 @@ var LargeIcon = React.createClass({
 
 module.exports = LargeIcon;
 
-},{"react":219}],234:[function(require,module,exports){
+},{"react":219}],235:[function(require,module,exports){
 var React = require('react');
 var LargeIcon = require('./LargeIcon.jsx');
 var SmallIcon = require('./SmallIcon.jsx');
@@ -25059,7 +25203,7 @@ var SideHeader = React.createClass({
 
 module.exports = SideHeader;
 
-},{"./LargeIcon.jsx":233,"./SmallIcon.jsx":238,"react":219}],235:[function(require,module,exports){
+},{"./LargeIcon.jsx":234,"./SmallIcon.jsx":239,"react":219}],236:[function(require,module,exports){
 var React = require('react');
 var ReactRouter = require('react-router');
 var Link = ReactRouter.Link;
@@ -25116,7 +25260,7 @@ var SideLinkItem = React.createClass({
 
 module.exports = SideLinkItem;
 
-},{"react":219,"react-router":82}],236:[function(require,module,exports){
+},{"react":219,"react-router":82}],237:[function(require,module,exports){
 var React = require('react');
 var ReactRouter = require('react-router');
 var Link = ReactRouter.Link;
@@ -25179,7 +25323,7 @@ var SideLinks = React.createClass({
 
 module.exports = SideLinks;
 
-},{"./SideLinkItem.jsx":235,"react":219,"react-router":82}],237:[function(require,module,exports){
+},{"./SideLinkItem.jsx":236,"react":219,"react-router":82}],238:[function(require,module,exports){
 var React = require('react');
 var SideHeader = require('./SideHeader.jsx');
 var SideLinks = require('./SideLinks.jsx');
@@ -25204,7 +25348,7 @@ var Sidebar = React.createClass({
 
 module.exports = Sidebar;
 
-},{"./SideHeader.jsx":234,"./SideLinks.jsx":236,"react":219}],238:[function(require,module,exports){
+},{"./SideHeader.jsx":235,"./SideLinks.jsx":237,"react":219}],239:[function(require,module,exports){
 var React = require('react');
 
 var SmallIcon = React.createClass({
@@ -25236,11 +25380,11 @@ var SmallIcon = React.createClass({
 
 module.exports = SmallIcon;
 
-},{"react":219}],239:[function(require,module,exports){
+},{"react":219}],240:[function(require,module,exports){
 var React = require('react');
 var ReactDOM = require('react-dom');
 var Routes = require('./Routes.jsx');
 
 ReactDOM.render(Routes, document.getElementById('main'));
 
-},{"./Routes.jsx":222,"react":219,"react-dom":52}]},{},[239]);
+},{"./Routes.jsx":222,"react":219,"react-dom":52}]},{},[240]);
