@@ -10,6 +10,14 @@ var ProjectPage = React.createClass({
     clickedLink: function(link) {
         this.setState({clicked: true});
         this.setState({project: link});
+        for(var ref in this.refs){
+            if(ref == link){
+                this.refs[link].clickedThis(link);
+            }
+            else {
+                this.refs[ref].clickedOther();
+            }
+        }
     },
     render: function() {
 
@@ -28,7 +36,7 @@ var ProjectPage = React.createClass({
                 display: this.state.clicked ? 'block' : 'none'
             },
             defaultStyle = {
-                margin: '0 auto',
+                margin: '50px auto 0px auto',
                 textAlign: 'center',
                 textShadow: '1px 1px 2px black',
                 display: this.state.clicked ? 'none':'block'
@@ -38,16 +46,16 @@ var ProjectPage = React.createClass({
             <div style={mainStyle}>
                 <div style={headerStyle} className='row projectsHeader'>
                     <div className='col-xs-3' onClick={this.clickedLink.bind(this, 'Letters4Animals')} >
-                        <ProjectHeaderItem project='Letters4Animals'/>
+                        <ProjectHeaderItem project='Letters4Animals' ref='Letters4Animals' />
                     </div>
                     <div className='col-xs-3' onClick={this.clickedLink.bind(this, 'CodeBoard')} >
-                        <ProjectHeaderItem project='CodeBoard' />
+                        <ProjectHeaderItem project='CodeBoard' ref='CodeBoard'/>
                     </div>
                     <div className='col-xs-3' onClick={this.clickedLink.bind(this, 'WeatherShouldIGo')} >
-                        <ProjectHeaderItem project='WeatherShouldIGo' />
+                        <ProjectHeaderItem project='WeatherShouldIGo' ref='WeatherShouldIGo'/>
                     </div>
                     <div className='col-xs-3' onClick={this.clickedLink.bind(this, 'ProceduralGame')} >
-                        <ProjectHeaderItem project='ProceduralGame' />
+                        <ProjectHeaderItem project='ProceduralGame' ref='ProceduralGame' />
                     </div>
                 </div>
 

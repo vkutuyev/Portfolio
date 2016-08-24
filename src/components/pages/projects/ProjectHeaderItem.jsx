@@ -1,6 +1,34 @@
 var React = require('react');
 
 var ProjectHeaderItem = React.createClass({
+    getInitialState: function() {
+        return {clicked: false};
+    },
+    hovAnimate: function(e) {
+        if(!this.state.clicked){
+            e.target.src = 'img/projects/' + this.props.project + '.gif';
+            this.refs.projLabel.style.backgroundColor = 'rgb(108, 106, 107)';
+        }
+        else{
+            e.target.src = 'img/projects/' + this.props.project + '.png';
+        }
+    },
+    stopAnimate: function(e) {
+        e.target.src = 'img/projects/' + this.props.project + '.png';
+        if(!this.state.clicked){
+            this.refs.projLabel.style.backgroundColor = 'rgb(185, 193, 180)';
+        }
+    },
+    clickedThis: function(link) {
+        this.setState({clicked: true});
+        this.refs.projLabel.style.color = 'rgb( 0, 153, 204)';
+        this.refs.projLabel.style.backgroundColor = 'rgb(108, 106, 107)';
+    },
+    clickedOther: function() {
+        this.setState({clicked: false});
+        this.refs.projLabel.style.color = 'white';
+        this.refs.projLabel.style.backgroundColor = 'rgb(185, 193, 180)';
+    },
     render: function() {
 
         var headerItemStyle = {
@@ -38,10 +66,11 @@ var ProjectHeaderItem = React.createClass({
 
         return (
             <div className='row projectHeaderBox' style={headerItemStyle}>
-                <div className='col-xs-12' style={projectBoxStyle}>
-                    <img src='img/test.png' width='100%' alt='Project' style={thumbStyle}/>
+                <div className='col-xs-12 projectHeaderImage' style={projectBoxStyle}>
+                    <img src={'img/projects/'+this.props.project+'.png'} width='100%' alt='Project' style={thumbStyle}
+                    onMouseOver={this.hovAnimate} onMouseOut={this.stopAnimate} />
                 </div>
-                <div className='col-xs-12' style={projectLabelStyle}>
+                <div className='col-xs-12' style={projectLabelStyle} ref='projLabel'>
                     {this.props.project}
                 </div>
             </div>
