@@ -10,7 +10,7 @@ var ProjectDetailPage = React.createClass({
                     'name': "Letters4Animals",
                     'desc': "Designed, developed, and deployed a fully functional website for a non-profit that utilizes multiple APIs in order to generate and pre-populate a letter that a user can print or save and then send to their respective representative.",
                     'made': "Made in four weeks as part of a scrum dev team of 7 people.",
-                    'tech': 'Node.js, AngularJS, PostgreSQL, Express.js, Bootstrap, jQuery, Google Civics API, Google Geocoder API, OpenStates API, Twilio, and several 3rd party Angular modules',
+                    'tech': 'Node.js, AngularJS, PostgreSQL, Express.js, Bootstrap, jQuery, Google Civics API, Google Geocoder API, OpenStates API, Twilio, and several 3rd-party Angular modules',
                     'gif': 'Letters4Animals.gif',
                     'url': 'http://www.letters4animals.org/'
                 },
@@ -26,13 +26,13 @@ var ProjectDetailPage = React.createClass({
                     'name': "#Weather Should I Go?",
                     'desc': "A website that lets users plan trips based on the weather. Users can select a specific type of weather, see instagram photos of a selected destination, and get an Expedia link to the appropriate destination based on the user's location.",
                     'made': "Made in four days as part of a team of four.",
-                    'tech': 'HTML5, CSS3, Javascript, jQuery, PHP, MySQL, Ajax, Open Weather API, Google Maps API, Instagram API',
+                    'tech': 'HTML5, CSS3, Javascript, jQuery, PHP, MySQL, Open Weather API, Google Maps API, Instagram API',
                     'gif': 'WeatherShouldIGo.gif',
                     'url': 'http://weather-should-i-go.sharolchand.com/'
                 },
                 'ProceduralGame' : {
                     'name': "The Procedural Game",
-                    'desc': "A side-scrolling platformer created completely programmatically in Xcode with logically randomized, procedural level generation. Features three different play modes, a tutorial section with an AI-controller demonstration of the game, a dynamic difficulty that increases as the player gets further,  and a persistent score system that stores a user’s best score in an online database.",
+                    'desc': "A side-scrolling platformer created completely programmatically in Xcode with logically randomized, procedural level generation. Features three different play modes, a tutorial section with an AI-controlled demonstration of the game, a dynamic difficulty that increases as the player gets further,  and a persistent score system that stores a user’s best score in an online database.",
                     'made': "Made in four days as a solo project.",
                     'tech': "Swift, Xcode SpriteKit, Google Firebase",
                     'gif': 'ProceduralGame.gif',

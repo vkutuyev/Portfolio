@@ -1,11 +1,11 @@
 var React = require('react');
-var DesignSkill = require('./DesignSkill.jsx');
-var DevSkill = require('./DevSkill.jsx');
-var DataSkill = require('./DataSkill.jsx');
+var SkillDisplay = require('./SkillDisplay.jsx');
+var SkillInter = require('./SkillInter.jsx');
+
 
 var SkillsPage = React.createClass({
     getInitialState: function() {
-        return {textFixed: false, midText: '{this.props.linkTetx}', dataHover: false, cursorBlink: false, typeFinish: false};
+        return {textFixed: false, midText: '{this.props.linkTetx}', dataHover: false, cursorBlink: false, typeFinish: false, picked: false, pickedSkill: ''};
     },
     typingFix: function() {
         if(!this.state.textFixed){
@@ -64,16 +64,16 @@ var SkillsPage = React.createClass({
         var loop = setInterval(function(){
             if(this.state.dataHover){
                 var text = this.refs.datBox.innerHTML;
-                if(text != 'Database...'){
+                if(text != 'Data...'){
                     this.refs.datBox.innerHTML += '.';
                 }
                 else{
-                    this.refs.datBox.innerHTML = 'Database';
+                    this.refs.datBox.innerHTML = 'Data';
                 }
             }
             else{
                 clearInterval(loop);
-                this.refs.datBox.innerHTML = 'Database';
+                this.refs.datBox.innerHTML = 'Data';
             }
         }.bind(this), 250);
     },
@@ -82,17 +82,13 @@ var SkillsPage = React.createClass({
     },
     clicked: function(btn) {
         for(var ref in this.refs){
-            if(ref[ref.length-1] == '1'){
-                this.refs[ref].style.display = 'none';
-                this.refs[ref].style.visibility = 'hidden';
-            }
             if(ref[ref.length-1] == 'x'){
                 this.refs[ref].style.height = '80px';
             }
         }
-        this.refs[btn.ref].style.display = 'block';
-        this.refs[btn.ref].style.visibility = 'visible';
         this.refs[btn.box].style.height = '100px';
+        this.setState({picked: true});
+        this.setState({pickedSkill: btn.skill});
     },
     render: function() {
 
@@ -112,44 +108,40 @@ var SkillsPage = React.createClass({
             },
             defaultStyle = {
                 textAlign: 'center',
-                display: 'block',
+                display: this.state.picked ? 'none':'block',
                 marginTop: '10%',
                 textShadow: '1px 1px 2px black',
                 fontFamily: 'Righteous'
+            },
+            skillStyle = {
+                display: this.state.picked ? 'block':'none',
+                marginTop: '50'
             };
 
         return (
             <div>
                 <div className='skillsHeader row' style={headerRowStyle}>
                     <div className='col-xs-4 leftHeaderBtn' style={headerBtnStyle}
-                    onClick={this.clicked.bind(this, {box: 'desBox', ref: 'design1'})} ref='desBox'>
+                    onClick={this.clicked.bind(this, {box: 'desBox', skill: 'design'})} ref='desBox'>
                         <span>Design</span>
                     </div>
                     <div className='col-xs-4 midHeaderBtn' style={headerBtnStyle}
-                    onClick={this.clicked.bind(this, {box: 'devBox', ref: 'develop1'})} ref='devBox'
+                    onClick={this.clicked.bind(this, {box: 'devBox', skill: 'dev'})} ref='devBox'
                     onMouseOver={this.typingFix} onMouseOut={this.typingStop}>
                         {this.state.midText}
                     </div>
                     <div className='col-xs-4 rightHeaderBtn' style={headerBtnStyle}
-                    onClick={this.clicked.bind(this, {box: 'datBox', ref: 'data1'})} ref='datBox'
+                    onClick={this.clicked.bind(this, {box: 'datBox', skill: 'data'})} ref='datBox'
                     onMouseOver={this.dataAnim} onMouseOut={this.dataAnimStop}>
-                        Database
+                        Data
                     </div>
                 </div>
 
                 <div className='row' style={defaultStyle} ref='default1'>
                     <h1>Select Category</h1>
                 </div>
-                <div style={{padding: '25'}}>
-                    <div className='row' style={{visibility: 'hidden'}} ref='design1'>
-                        <DesignSkill />
-                    </div>
-                    <div className='row' style={{visibility: 'hidden'}} ref='develop1'>
-                        <DevSkill />
-                    </div>
-                    <div className='row' style={{visibility: 'hidden'}} ref='data1'>
-                        <DataSkill />
-                    </div>
+                <div className='col-xs-12' style={skillStyle}>
+                    <SkillInter skName={this.state.pickedSkill} />
                 </div>
             </div>
         );

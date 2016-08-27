@@ -61,7 +61,8 @@ var ProjectHeaderItem = React.createClass({
             },
             thumbStyle = {
                 margin: 'auto auto',
-                display: 'block'
+                display: 'block',
+                maxHeight: '120px'
             };
 
         return (

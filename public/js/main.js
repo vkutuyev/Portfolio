@@ -24477,7 +24477,7 @@ var Routes = React.createElement(
 
 module.exports = Routes;
 
-},{"./components/pages/AboutPage.jsx":223,"./components/pages/BasePage.jsx":224,"./components/pages/HomePage.jsx":225,"./components/pages/ResumePage.jsx":226,"./components/pages/projects/ProjectPage.jsx":229,"./components/pages/skills/SkillsPage.jsx":233,"react":219,"react-router":82}],223:[function(require,module,exports){
+},{"./components/pages/AboutPage.jsx":223,"./components/pages/BasePage.jsx":224,"./components/pages/HomePage.jsx":225,"./components/pages/ResumePage.jsx":226,"./components/pages/projects/ProjectPage.jsx":229,"./components/pages/skills/SkillsPage.jsx":232,"react":219,"react-router":82}],223:[function(require,module,exports){
 var React = require('react');
 
 var AboutPage = React.createClass({
@@ -24535,7 +24535,7 @@ var BasePage = React.createClass({
 
 module.exports = BasePage;
 
-},{"../sidebar/Sidebar.jsx":238,"react":219,"react-router":82}],225:[function(require,module,exports){
+},{"../sidebar/Sidebar.jsx":237,"react":219,"react-router":82}],225:[function(require,module,exports){
 var React = require('react');
 
 var HomePage = React.createClass({
@@ -24584,7 +24584,7 @@ var ProjectDetailPage = React.createClass({
                 'name': "Letters4Animals",
                 'desc': "Designed, developed, and deployed a fully functional website for a non-profit that utilizes multiple APIs in order to generate and pre-populate a letter that a user can print or save and then send to their respective representative.",
                 'made': "Made in four weeks as part of a scrum dev team of 7 people.",
-                'tech': 'Node.js, AngularJS, PostgreSQL, Express.js, Bootstrap, jQuery, Google Civics API, Google Geocoder API, OpenStates API, Twilio, and several 3rd party Angular modules',
+                'tech': 'Node.js, AngularJS, PostgreSQL, Express.js, Bootstrap, jQuery, Google Civics API, Google Geocoder API, OpenStates API, Twilio, and several 3rd-party Angular modules',
                 'gif': 'Letters4Animals.gif',
                 'url': 'http://www.letters4animals.org/'
             },
@@ -24600,13 +24600,13 @@ var ProjectDetailPage = React.createClass({
                 'name': "#Weather Should I Go?",
                 'desc': "A website that lets users plan trips based on the weather. Users can select a specific type of weather, see instagram photos of a selected destination, and get an Expedia link to the appropriate destination based on the user's location.",
                 'made': "Made in four days as part of a team of four.",
-                'tech': 'HTML5, CSS3, Javascript, jQuery, PHP, MySQL, Ajax, Open Weather API, Google Maps API, Instagram API',
+                'tech': 'HTML5, CSS3, Javascript, jQuery, PHP, MySQL, Open Weather API, Google Maps API, Instagram API',
                 'gif': 'WeatherShouldIGo.gif',
                 'url': 'http://weather-should-i-go.sharolchand.com/'
             },
             'ProceduralGame': {
                 'name': "The Procedural Game",
-                'desc': "A side-scrolling platformer created completely programmatically in Xcode with logically randomized, procedural level generation. Features three different play modes, a tutorial section with an AI-controller demonstration of the game, a dynamic difficulty that increases as the player gets further,  and a persistent score system that stores a user’s best score in an online database.",
+                'desc': "A side-scrolling platformer created completely programmatically in Xcode with logically randomized, procedural level generation. Features three different play modes, a tutorial section with an AI-controlled demonstration of the game, a dynamic difficulty that increases as the player gets further,  and a persistent score system that stores a user’s best score in an online database.",
                 'made': "Made in four days as a solo project.",
                 'tech': "Swift, Xcode SpriteKit, Google Firebase",
                 'gif': 'ProceduralGame.gif',
@@ -24770,7 +24770,8 @@ var ProjectHeaderItem = React.createClass({
         },
             thumbStyle = {
             margin: 'auto auto',
-            display: 'block'
+            display: 'block',
+            maxHeight: '120px'
         };
 
         return React.createElement(
@@ -24884,65 +24885,237 @@ module.exports = ProjectPage;
 },{"./ProjectDetail.jsx":227,"./ProjectHeaderItem.jsx":228,"react":219}],230:[function(require,module,exports){
 var React = require('react');
 
-var DataSkill = React.createClass({
-    displayName: 'DataSkill',
+var SkillDisplay = React.createClass({
+    displayName: 'SkillDisplay',
 
+    getInitialState: function () {
+        return { picked: 'Select a Tech' };
+    },
+    hovered: function (e) {
+        var target = $(e.target);
+        if (target.hasClass('aimHere')) {
+            console.log('=========target=========');
+            console.log(target);
+            console.log('=========target=========');
+            target.css('backgroundColor', 'yellow');
+            target.css('color', 'black');
+            // var parent = $(target[0]).children().prevObject[0].parentNode;
+            // e.target.style.color = 'yellow';
+            // parent.style.boxShadow = '0px 0px 10px yellow';
+            // this.setState({picked: e.target.innerHTML});
+        }
+    },
+    hoverLeft: function (e) {
+        var target = $(e.target);
+        if (target.hasClass('aimHere')) {
+            target.css('backgroundColor', 'grey');
+            target.css('color', 'white');
+        }
+        // var target = $(e.target);
+        // if(target.hasClass('techBox')){
+        //     var parent = target.children().prevObject[0].parentNode;
+        //     // target.css('color', 'white');
+        //     parent.style.boxShadow = '0px 0px 10px black';
+        //     // this.setState({picked: 'Select a Tech'});
+        //     console.log('left');
+        // }
+        // this.setState({picked: 'Select a Tech'});
+    },
     render: function () {
+
+        var techs = {
+            '': [],
+            'design': [{
+                name: 'HTML5',
+                logo: 'htmlIcon.png'
+            }, {
+                name: 'CSS3',
+                logo: 'cssIcon.png'
+            }, {
+                name: 'jQuery',
+                logo: 'jqueryIcon.png'
+            }, {
+                name: 'Bootstrap',
+                logo: 'bootstrapIcon.png'
+            }, {
+                name: 'AngularJS',
+                logo: 'angularIcon.png'
+            }, {
+                name: 'React',
+                logo: 'reactIcon.png'
+            }, {
+                name: 'Photoshop',
+                logo: 'photoshopIcon.png'
+            }, {
+                name: 'Premiere',
+                logo: 'premiereIcon.png'
+            }],
+            'dev': [{
+                name: 'JavaScript',
+                logo: 'javascriptIcon.png'
+            }, {
+                name: 'PHP',
+                logo: 'phpIcon.png'
+            }, {
+                name: 'Swift',
+                logo: 'swiftIcon.png'
+            }, {
+                name: 'Python',
+                logo: 'pythonIcon.png'
+            }, {
+                name: 'Node.js',
+                logo: 'nodeIcon.png'
+            }, {
+                name: 'CodeIgniter',
+                logo: 'codeigniterIcon.png'
+            }, {
+                name: 'Xcode',
+                logo: 'xcodeIcon.png'
+            }, {
+                name: 'Django',
+                logo: 'djangoIcon.png'
+            }],
+            'data': [{
+                name: 'MySQL',
+                logo: 'mysqlIcon.png'
+            }, {
+                name: 'PostgreSQL',
+                logo: 'postgresIcon.png'
+            }, {
+                name: 'MongoDB',
+                logo: 'mongoIcon.png'
+            }, {
+                name: 'Firebase',
+                logo: 'firebaseIcon.png'
+            }, {
+                name: 'Flux',
+                logo: 'fluxIcon.png'
+            }, {
+                name: 'Redux',
+                logo: 'reduxIcon.png'
+            }, {
+                name: 'CoreData',
+                logo: 'coredataIcon.png'
+            }, {
+                name: 'Ajax/API',
+                logo: 'ajaxIcon.png'
+            }]
+        };
+
+        var techStyle = {
+            marginBottom: '25',
+            marginRight: '10',
+            background: 'rgb(108, 106, 107)',
+            border: '2px solid black',
+            borderRadius: '15',
+            boxShadow: '0px 0px 10px black',
+            minHeight: '60px',
+            padding: '15px',
+            display: 'flex',
+            alignItems: 'center'
+        },
+            nameStyle = {
+            fontFamily: 'Poiret One',
+            textShadow: '1px 1px 4px black',
+            textAlign: 'center',
+            fontSize: '0.8em'
+        },
+            catStyle = {
+            minHeight: '35vh'
+        },
+            headerStyle = {
+            textAlign: 'center',
+            textShadow: '1px 1px 4px black',
+            marginBottom: '25',
+            fontFamily: 'Righteous'
+        };
+
         return React.createElement(
             'div',
-            null,
-            'Database'
+            { className: 'row', onMouseOver: this.hovered, onMouseOut: this.hoverLeft },
+            techs[this.props.skName].map(function (tech) {
+                return React.createElement(
+                    'div',
+                    { className: 'col-xs-3', style: { minWidth: '220px' }, key: Date.now() / 1000 + tech.name },
+                    React.createElement(
+                        'div',
+                        { className: 'row aimHere', style: techStyle },
+                        React.createElement(
+                            'div',
+                            { className: 'col-xs-4 imgDiv' },
+                            React.createElement('img', { src: 'img/techIcons/' + tech.logo, width: '45vw', height: '45vh' })
+                        ),
+                        React.createElement(
+                            'div',
+                            { className: 'col-xs-7 techBox', style: nameStyle },
+                            tech.name
+                        )
+                    )
+                );
+            })
         );
     }
 });
 
-module.exports = DataSkill;
+module.exports = SkillDisplay;
 
 },{"react":219}],231:[function(require,module,exports){
 var React = require('react');
+var SkillDisplay = require('./SkillDisplay.jsx');
 
-var DesignSkill = React.createClass({
-    displayName: 'DesignSkill',
+var SkillInter = React.createClass({
+    displayName: 'SkillInter',
 
     render: function () {
+
+        var catStyle = {
+            minHeight: '35vh'
+        },
+            headerStyle = {
+            textAlign: 'center',
+            textShadow: '1px 1px 4px black',
+            marginBottom: '25',
+            fontFamily: 'Righteous'
+        };
+
         return React.createElement(
             'div',
             null,
-            'Design'
+            React.createElement(
+                'div',
+                { className: 'row', style: catStyle },
+                React.createElement(
+                    'h1',
+                    { style: headerStyle },
+                    'Technologies'
+                ),
+                React.createElement(SkillDisplay, { skName: this.props.skName })
+            ),
+            React.createElement(
+                'div',
+                { className: 'row' },
+                React.createElement(
+                    'h1',
+                    { style: headerStyle },
+                    'Techniques'
+                )
+            )
         );
     }
 });
 
-module.exports = DesignSkill;
+module.exports = SkillInter;
 
-},{"react":219}],232:[function(require,module,exports){
+},{"./SkillDisplay.jsx":230,"react":219}],232:[function(require,module,exports){
 var React = require('react');
-
-var DevSkill = React.createClass({
-    displayName: 'DevSkill',
-
-    render: function () {
-        return React.createElement(
-            'div',
-            null,
-            'Development'
-        );
-    }
-});
-
-module.exports = DevSkill;
-
-},{"react":219}],233:[function(require,module,exports){
-var React = require('react');
-var DesignSkill = require('./DesignSkill.jsx');
-var DevSkill = require('./DevSkill.jsx');
-var DataSkill = require('./DataSkill.jsx');
+var SkillDisplay = require('./SkillDisplay.jsx');
+var SkillInter = require('./SkillInter.jsx');
 
 var SkillsPage = React.createClass({
     displayName: 'SkillsPage',
 
     getInitialState: function () {
-        return { textFixed: false, midText: '{this.props.linkTetx}', dataHover: false, cursorBlink: false, typeFinish: false };
+        return { textFixed: false, midText: '{this.props.linkTetx}', dataHover: false, cursorBlink: false, typeFinish: false, picked: false, pickedSkill: '' };
     },
     typingFix: function () {
         if (!this.state.textFixed) {
@@ -25004,14 +25177,14 @@ var SkillsPage = React.createClass({
         var loop = setInterval(function () {
             if (this.state.dataHover) {
                 var text = this.refs.datBox.innerHTML;
-                if (text != 'Database...') {
+                if (text != 'Data...') {
                     this.refs.datBox.innerHTML += '.';
                 } else {
-                    this.refs.datBox.innerHTML = 'Database';
+                    this.refs.datBox.innerHTML = 'Data';
                 }
             } else {
                 clearInterval(loop);
-                this.refs.datBox.innerHTML = 'Database';
+                this.refs.datBox.innerHTML = 'Data';
             }
         }.bind(this), 250);
     },
@@ -25020,17 +25193,13 @@ var SkillsPage = React.createClass({
     },
     clicked: function (btn) {
         for (var ref in this.refs) {
-            if (ref[ref.length - 1] == '1') {
-                this.refs[ref].style.display = 'none';
-                this.refs[ref].style.visibility = 'hidden';
-            }
             if (ref[ref.length - 1] == 'x') {
                 this.refs[ref].style.height = '80px';
             }
         }
-        this.refs[btn.ref].style.display = 'block';
-        this.refs[btn.ref].style.visibility = 'visible';
         this.refs[btn.box].style.height = '100px';
+        this.setState({ picked: true });
+        this.setState({ pickedSkill: btn.skill });
     },
     render: function () {
 
@@ -25050,10 +25219,14 @@ var SkillsPage = React.createClass({
         },
             defaultStyle = {
             textAlign: 'center',
-            display: 'block',
+            display: this.state.picked ? 'none' : 'block',
             marginTop: '10%',
             textShadow: '1px 1px 2px black',
             fontFamily: 'Righteous'
+        },
+            skillStyle = {
+            display: this.state.picked ? 'block' : 'none',
+            marginTop: '50'
         };
 
         return React.createElement(
@@ -25065,7 +25238,7 @@ var SkillsPage = React.createClass({
                 React.createElement(
                     'div',
                     { className: 'col-xs-4 leftHeaderBtn', style: headerBtnStyle,
-                        onClick: this.clicked.bind(this, { box: 'desBox', ref: 'design1' }), ref: 'desBox' },
+                        onClick: this.clicked.bind(this, { box: 'desBox', skill: 'design' }), ref: 'desBox' },
                     React.createElement(
                         'span',
                         null,
@@ -25075,16 +25248,16 @@ var SkillsPage = React.createClass({
                 React.createElement(
                     'div',
                     { className: 'col-xs-4 midHeaderBtn', style: headerBtnStyle,
-                        onClick: this.clicked.bind(this, { box: 'devBox', ref: 'develop1' }), ref: 'devBox',
+                        onClick: this.clicked.bind(this, { box: 'devBox', skill: 'dev' }), ref: 'devBox',
                         onMouseOver: this.typingFix, onMouseOut: this.typingStop },
                     this.state.midText
                 ),
                 React.createElement(
                     'div',
                     { className: 'col-xs-4 rightHeaderBtn', style: headerBtnStyle,
-                        onClick: this.clicked.bind(this, { box: 'datBox', ref: 'data1' }), ref: 'datBox',
+                        onClick: this.clicked.bind(this, { box: 'datBox', skill: 'data' }), ref: 'datBox',
                         onMouseOver: this.dataAnim, onMouseOut: this.dataAnimStop },
-                    'Database'
+                    'Data'
                 )
             ),
             React.createElement(
@@ -25098,22 +25271,8 @@ var SkillsPage = React.createClass({
             ),
             React.createElement(
                 'div',
-                { style: { padding: '25' } },
-                React.createElement(
-                    'div',
-                    { className: 'row', style: { visibility: 'hidden' }, ref: 'design1' },
-                    React.createElement(DesignSkill, null)
-                ),
-                React.createElement(
-                    'div',
-                    { className: 'row', style: { visibility: 'hidden' }, ref: 'develop1' },
-                    React.createElement(DevSkill, null)
-                ),
-                React.createElement(
-                    'div',
-                    { className: 'row', style: { visibility: 'hidden' }, ref: 'data1' },
-                    React.createElement(DataSkill, null)
-                )
+                { className: 'col-xs-12', style: skillStyle },
+                React.createElement(SkillInter, { skName: this.state.pickedSkill })
             )
         );
     }
@@ -25121,7 +25280,7 @@ var SkillsPage = React.createClass({
 
 module.exports = SkillsPage;
 
-},{"./DataSkill.jsx":230,"./DesignSkill.jsx":231,"./DevSkill.jsx":232,"react":219}],234:[function(require,module,exports){
+},{"./SkillDisplay.jsx":230,"./SkillInter.jsx":231,"react":219}],233:[function(require,module,exports){
 var React = require('react');
 
 var LargeIcon = React.createClass({
@@ -25172,7 +25331,7 @@ var LargeIcon = React.createClass({
 
 module.exports = LargeIcon;
 
-},{"react":219}],235:[function(require,module,exports){
+},{"react":219}],234:[function(require,module,exports){
 var React = require('react');
 var LargeIcon = require('./LargeIcon.jsx');
 var SmallIcon = require('./SmallIcon.jsx');
@@ -25247,7 +25406,7 @@ var SideHeader = React.createClass({
 
 module.exports = SideHeader;
 
-},{"./LargeIcon.jsx":234,"./SmallIcon.jsx":239,"react":219}],236:[function(require,module,exports){
+},{"./LargeIcon.jsx":233,"./SmallIcon.jsx":238,"react":219}],235:[function(require,module,exports){
 var React = require('react');
 var ReactRouter = require('react-router');
 var Link = ReactRouter.Link;
@@ -25304,7 +25463,7 @@ var SideLinkItem = React.createClass({
 
 module.exports = SideLinkItem;
 
-},{"react":219,"react-router":82}],237:[function(require,module,exports){
+},{"react":219,"react-router":82}],236:[function(require,module,exports){
 var React = require('react');
 var ReactRouter = require('react-router');
 var Link = ReactRouter.Link;
@@ -25367,7 +25526,7 @@ var SideLinks = React.createClass({
 
 module.exports = SideLinks;
 
-},{"./SideLinkItem.jsx":236,"react":219,"react-router":82}],238:[function(require,module,exports){
+},{"./SideLinkItem.jsx":235,"react":219,"react-router":82}],237:[function(require,module,exports){
 var React = require('react');
 var SideHeader = require('./SideHeader.jsx');
 var SideLinks = require('./SideLinks.jsx');
@@ -25392,7 +25551,7 @@ var Sidebar = React.createClass({
 
 module.exports = Sidebar;
 
-},{"./SideHeader.jsx":235,"./SideLinks.jsx":237,"react":219}],239:[function(require,module,exports){
+},{"./SideHeader.jsx":234,"./SideLinks.jsx":236,"react":219}],238:[function(require,module,exports){
 var React = require('react');
 
 var SmallIcon = React.createClass({
@@ -25424,11 +25583,11 @@ var SmallIcon = React.createClass({
 
 module.exports = SmallIcon;
 
-},{"react":219}],240:[function(require,module,exports){
+},{"react":219}],239:[function(require,module,exports){
 var React = require('react');
 var ReactDOM = require('react-dom');
 var Routes = require('./Routes.jsx');
 
 ReactDOM.render(Routes, document.getElementById('main'));
 
-},{"./Routes.jsx":222,"react":219,"react-dom":52}]},{},[240]);
+},{"./Routes.jsx":222,"react":219,"react-dom":52}]},{},[239]);
