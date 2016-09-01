@@ -20,14 +20,12 @@ var BasePage = React.createClass({
 
         return (
             <div className='container'>
-                {/* <div className='row'> */}
                     <div className='col-xs-3' style={sideStyle} id='sideWindow'>
                         <Sidebar />
                     </div>
                     <div className='col-xs-9' style={mainStyle} id='contentWindow'>
                         {this.props.children}
                     </div>
-                {/* </div> */}
             </div>
         );
     }

@@ -26,11 +26,44 @@ body {
 }
 
 
-
 /********Animations*********/
 .mainHeadImg {
-    animation-duration: 2s;
+    -webkit-animation-name: fadeAnim;
+    -webkit-animation-duration: 2s;
+    -moz-animation-name: fadeAnim;
+    -moz-animation-duration: 2s;
     animation-name: fadeAnim;
+    animation-duration: 2s;
+}
+.helloText {
+    opacity: 0;
+    -webkit-animation-name: fadeAnim;
+    -webkit-animation-duration: 2s;
+    -webkit-animation-delay: 1s;
+    -webkit-animation-fill-mode: forwards;
+    -moz-animation-name: fadeAnim;
+    -moz-animation-duration: 2s;
+    -moz-animation-delay: 1s;
+    -moz-animation-fill-mode: forwards;
+    animation-name: fadeAnim;
+    animation-duration: 2s;
+    animation-delay: 1s;
+    animation-fill-mode: forwards;
+}
+.welcomeText {
+    opacity: 0;
+    -webkit-animation-name: fadeAnim;
+    -webkit-animation-duration: 2s;
+    -webkit-animation-delay: 3s;
+    -webkit-animation-fill-mode: forwards;
+    -moz-animation-name: fadeAnim;
+    -moz-animation-duration: 2s;
+    -moz-animation-delay: 3s;
+    -moz-animation-fill-mode: forwards;
+    animation-name: fadeAnim;
+    animation-duration: 2s;
+    animation-delay: 3s;
+    animation-fill-mode: forwards;
 }
 
 @keyframes fadeAnim {

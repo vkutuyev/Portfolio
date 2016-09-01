@@ -25251,10 +25251,149 @@ var AboutPage = React.createClass({
     displayName: 'AboutPage',
 
     render: function () {
+
+        var headerStyle = {
+            fontFamily: 'Righteous',
+            textShadow: '1px 1px 4px black',
+            textAlign: 'center',
+            textDecoration: 'underline',
+            marginBottom: '40px'
+        },
+            catStyle = {
+            height: '40vh',
+            marginTop: '5vh',
+            fontFamily: 'Baumans'
+        },
+            listHeadStyle = {
+            textAlign: 'center',
+            fontSize: '1em',
+            textShadow: '1px 1px 4px black'
+        },
+            listItemStyle = {
+            textAlign: 'left',
+            fontSize: '0.5em',
+            marginTop: '5px'
+        },
+            siteText = {
+            fontFamily: 'Raleway',
+            textShadow: '1px 1px 4px black',
+            fontSize: '0.6em',
+            display: 'block',
+            marginBottom: '10px',
+            textOverflow: 'string'
+        },
+            linkStyle = {
+            textDecoration: 'none',
+            color: 'yellow'
+        };
+
         return React.createElement(
             'div',
             null,
-            'About!'
+            React.createElement(
+                'div',
+                { className: 'row', style: catStyle },
+                React.createElement(
+                    'h1',
+                    { style: headerStyle },
+                    'About Me'
+                ),
+                React.createElement(
+                    'div',
+                    { className: 'col-xs-6 col-xs-offset-2' },
+                    'Test big'
+                ),
+                React.createElement(
+                    'div',
+                    { className: 'col-xs-2' },
+                    'Test small'
+                )
+            ),
+            React.createElement(
+                'div',
+                { className: 'row', style: catStyle },
+                React.createElement(
+                    'h1',
+                    { style: headerStyle },
+                    'About The Site'
+                ),
+                React.createElement(
+                    'div',
+                    { className: 'col-xs-8 col-xs-offset-1' },
+                    React.createElement(
+                        'span',
+                        { style: siteText },
+                        '    This site was created with ReactJS using Browserify after spending about four days learning the basics of React. As a result things are sometimes... less than optimal due to me using them as a chance to practice various rendering and data binding techniques.'
+                    ),
+                    React.createElement(
+                        'span',
+                        { style: siteText },
+                        '    I\'ve also used a handful of 3rd-party libraries as practice in modifying and incorporating new code I had never seen before. Namely: ',
+                        React.createElement(
+                            'a',
+                            { style: linkStyle, href: 'http://stickerjs.cmiscm.com/', target: '_blank' },
+                            'Sticker.js'
+                        ),
+                        ' used for the sticker effect on my picture in the sidebar which I have modified to show a flag underneath, ',
+                        React.createElement(
+                            'a',
+                            { style: linkStyle, href: 'https://bl.ocks.org/mbostock/11337835', target: '_blank' },
+                            'Mike Bostock\'s D3 animation'
+                        ),
+                        ' of a randomly traversed spanning tree which I have modified slightly and used for the background color change effect, and ',
+                        React.createElement(
+                            'a',
+                            { style: linkStyle, href: 'http://hakim.se/', target: '_blank' },
+                            'Hakim El Hattab\'s Rolling Links'
+                        ),
+                        ' effect which I have modified to match the icons in the sidebar.'
+                    )
+                ),
+                React.createElement(
+                    'div',
+                    { className: 'col-xs-3', style: listHeadStyle },
+                    'Tech Used',
+                    React.createElement(
+                        'ul',
+                        { style: listItemStyle },
+                        React.createElement(
+                            'li',
+                            null,
+                            'React (w/ Browserify)'
+                        ),
+                        React.createElement(
+                            'li',
+                            null,
+                            'Express Server'
+                        ),
+                        React.createElement(
+                            'li',
+                            null,
+                            'CSS3 Animations'
+                        ),
+                        React.createElement(
+                            'li',
+                            null,
+                            'jQuery Element Resizing'
+                        ),
+                        React.createElement(
+                            'li',
+                            null,
+                            'D3+Canvas Animation'
+                        ),
+                        React.createElement(
+                            'li',
+                            null,
+                            'Sticker.js'
+                        ),
+                        React.createElement(
+                            'li',
+                            null,
+                            'Rolling Links'
+                        )
+                    )
+                )
+            )
         );
     }
 });
@@ -25309,10 +25448,37 @@ var HomePage = React.createClass({
     displayName: 'HomePage',
 
     render: function () {
+
+        var textStyle = {
+            fontFamily: 'Baumans',
+            fontSize: '1.5em',
+            textShadow: '1px 1px 4px black',
+            textAlign: 'center',
+            marginTop: '35'
+        };
+
         return React.createElement(
             'div',
-            { className: 'row' },
-            React.createElement('img', { className: 'mainHeadImg', src: 'img/SFShadow.png', alt: 'BG', width: '100%' })
+            null,
+            React.createElement(
+                'div',
+                { className: 'row' },
+                React.createElement('img', { className: 'mainHeadImg', src: 'img/SFShadow.png', alt: 'BG', width: '100%' })
+            ),
+            React.createElement(
+                'div',
+                { className: 'row', style: textStyle },
+                React.createElement(
+                    'div',
+                    { className: 'col-xs-8 col-xs-offset-2 helloText' },
+                    'Hello.'
+                ),
+                React.createElement(
+                    'div',
+                    { className: 'col-xs-8 col-xs-offset-2 welcomeText' },
+                    'Welcome to my portfolio.'
+                )
+            )
         );
     }
 });
@@ -26254,7 +26420,7 @@ var SideLinks = React.createClass({
     displayName: 'SideLinks',
 
     getInitialState: function () {
-        return { hover: false };
+        return { hover: false, testRefs: this.refs };
     },
     mouseOver: function () {
         this.setState({ hover: true });
@@ -26297,10 +26463,10 @@ var SideLinks = React.createClass({
                 React.createElement('i', { className: 'fa fa-3x fa-home', 'aria-hidden': 'true', style: iconStyle,
                     onMouseOver: this.mouseOver, onMouseOut: this.mouseOut })
             ),
-            React.createElement(SideLinkItem, { href: 'projects', ref: 'projects', text: '  Projects  ', icon: 'fa-cogs' }),
-            React.createElement(SideLinkItem, { href: 'skills', ref: 'skills', text: '  Skills  ', icon: 'fa-code' }),
-            React.createElement(SideLinkItem, { href: 'resume', ref: 'resume', text: '  Résumé  ', icon: 'fa-file-text-o' }),
-            React.createElement(SideLinkItem, { href: 'about', ref: 'about', text: '  About  ', icon: 'fa-user' })
+            React.createElement(SideLinkItem, { href: 'projects', ref: 'projects', text: '  Projects', icon: 'fa-cogs' }),
+            React.createElement(SideLinkItem, { href: 'skills', ref: 'skills', text: '  Skills', icon: 'fa-code' }),
+            React.createElement(SideLinkItem, { href: 'resume', ref: 'resume', text: '  Résumé', icon: 'fa-file-text-o' }),
+            React.createElement(SideLinkItem, { href: 'about', ref: 'about', text: '  About', icon: 'fa-user' })
         );
     }
 });

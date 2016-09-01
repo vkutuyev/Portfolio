@@ -5,7 +5,7 @@ var SideLinkItem = require('./SideLinkItem.jsx');
 
 var SideLinks = React.createClass({
     getInitialState: function() {
-        return {hover: false};
+        return {hover: false, testRefs: this.refs};
     },
     mouseOver: function() {
         this.setState({hover: true});
@@ -46,10 +46,10 @@ var SideLinks = React.createClass({
                     <i className="fa fa-3x fa-home" aria-hidden="true" style={iconStyle}
                     onMouseOver={this.mouseOver} onMouseOut={this.mouseOut}></i>
                 </Link>
-                <SideLinkItem href='projects' ref='projects' text='&nbsp;&nbsp;Projects&nbsp;&nbsp;' icon='fa-cogs' />
-                <SideLinkItem href='skills' ref='skills' text='&nbsp;&nbsp;Skills&nbsp;&nbsp;' icon='fa-code' />
-                <SideLinkItem href='resume' ref='resume' text='&nbsp;&nbsp;Résumé&nbsp;&nbsp;' icon='fa-file-text-o' />
-                <SideLinkItem href='about' ref='about' text='&nbsp;&nbsp;About&nbsp;&nbsp;' icon='fa-user' />
+                <SideLinkItem href='projects' ref='projects' text='&nbsp;&nbsp;Projects' icon='fa-cogs' />
+                <SideLinkItem href='skills' ref='skills' text='&nbsp;&nbsp;Skills' icon='fa-code' />
+                <SideLinkItem href='resume' ref='resume' text='&nbsp;&nbsp;Résumé' icon='fa-file-text-o' />
+                <SideLinkItem href='about' ref='about' text='&nbsp;&nbsp;About' icon='fa-user' />
             </div>
         );
     }
