@@ -1,18 +1,20 @@
 var React = require('react');
 var SkillDisplay = require('./SkillDisplay.jsx');
-var SkillInter = require('./SkillInter.jsx');
 
 
 var SkillsPage = React.createClass({
     getInitialState: function() {
-        return {textFixed: false, midText: '{this.props.linkTetx}', dataHover: false, cursorBlink: false, typeFinish: false, picked: false, pickedSkill: ''};
+        return {textFixed: false, midText: '{this.props.midTetx}', dataHover: false, cursorBlink: false, typeFinish: false, picked: false, pickedSkill: ''};
+    },
+    componentWillUnmount: function() {
+        clearInterval(this.timer);
     },
     typingFix: function() {
         if(!this.state.textFixed){
             this.state.textFixed = true;
             this.refs.devBox.innerHTML += '|';
             var count = 0;
-            var timer = setInterval(function() {
+            this.timer = setInterval(function() {
                 var text = this.refs.devBox.innerHTML;
                 if(count < 4){
                     if(text[text.length-1] == '|') {
@@ -26,12 +28,12 @@ var SkillsPage = React.createClass({
                 else {
                     this.refs.devBox.innerHTML = text.substring(0,text.length-2);
                     this.refs.devBox.innerHTML += '|';
-                    if(text == '{this.props.linkTet|'){
-                        clearInterval(timer);
-                        setTimeout(function(){this.refs.devBox.innerHTML = '{this.props.linkTex|'}.bind(this), 150);
-                        setTimeout(function(){this.refs.devBox.innerHTML = '{this.props.linkText|'}.bind(this), 300);
-                        setTimeout(function(){this.refs.devBox.innerHTML = '{this.props.linkText}|'}.bind(this), 450);
-                        setTimeout(function(){this.refs.devBox.innerHTML = 'Development';this.state.typeFinish=true;}.bind(this), 1000);
+                    if(text == '{this.props.midTet|'){
+                        clearInterval(this.timer);
+                        setTimeout(function(){this.refs.devBox.innerHTML = '{this.props.midTex|'}.bind(this), 150);
+                        setTimeout(function(){this.refs.devBox.innerHTML = '{this.props.midText|'}.bind(this), 300);
+                        setTimeout(function(){this.refs.devBox.innerHTML = '{this.props.midText}|'}.bind(this), 450);
+                        setTimeout(function(){this.refs.devBox.innerHTML = 'Development';this.state.typeFinish=true;}.bind(this), 1500);
                     }
                 }
             }.bind(this), 300);
@@ -141,7 +143,7 @@ var SkillsPage = React.createClass({
                     <h1>Select Category</h1>
                 </div>
                 <div className='col-xs-12' style={skillStyle}>
-                    <SkillInter skName={this.state.pickedSkill} />
+                    <SkillDisplay skName={this.state.pickedSkill} />
                 </div>
             </div>
         );

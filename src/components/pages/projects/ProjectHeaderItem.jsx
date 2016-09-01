@@ -68,8 +68,7 @@ var ProjectHeaderItem = React.createClass({
         return (
             <div className='row projectHeaderBox' style={headerItemStyle}>
                 <div className='col-xs-12 projectHeaderImage' style={projectBoxStyle}>
-                    <img src={'img/projects/'+this.props.project+'.png'} width='100%' alt='Project' style={thumbStyle}
-                    onMouseOver={this.hovAnimate} onMouseOut={this.stopAnimate} />
+                    <img src={'img/projects/'+this.props.project+'.png'} width='100%' height='auto' alt='Project' style={thumbStyle} onMouseOver={this.hovAnimate} onMouseOut={this.stopAnimate} />
                 </div>
                 <div className='col-xs-12' style={projectLabelStyle} ref='projLabel'>
                     {this.props.project}
