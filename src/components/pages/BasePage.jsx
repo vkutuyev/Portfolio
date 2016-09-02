@@ -8,7 +8,7 @@ var BasePage = React.createClass({
     render: function() {
 
         var sideStyle = {
-                height: window.innerHeight,
+                height: '100vh',
                 color: 'white',
                 background: '#003399',
                 padding: '25',

@@ -27320,7 +27320,7 @@ var AboutPage = React.createClass({
             textShadow: '1px 1px 4px black',
             textAlign: 'center',
             textDecoration: 'underline',
-            marginBottom: '40px'
+            marginBottom: '25px'
         },
             catStyle = {
             height: '40vh',
@@ -27334,13 +27334,13 @@ var AboutPage = React.createClass({
         },
             listItemStyle = {
             textAlign: 'left',
-            fontSize: '0.5em',
+            fontSize: '0.6em',
             marginTop: '5px'
         },
             siteText = {
             fontFamily: 'Raleway',
             textShadow: '1px 1px 4px black',
-            fontSize: '0.6em',
+            fontSize: '0.5em',
             display: 'block',
             marginBottom: '10px',
             textOverflow: 'string'
@@ -27370,7 +27370,11 @@ var AboutPage = React.createClass({
                 React.createElement(
                     'div',
                     { className: 'col-xs-7 col-xs-offset-1' },
-                    'Test big'
+                    React.createElement(
+                        'span',
+                        { style: siteText },
+                        '    Hello.'
+                    )
                 ),
                 React.createElement(
                     'div',
@@ -27400,25 +27404,25 @@ var AboutPage = React.createClass({
                         '    Some of that code comes from 3rd-party libraries and projects, which I included as practice in modifying and incorporating new code I had never seen before. Namely: ',
                         React.createElement(
                             'a',
-                            { className: 'roll', style: linkStyle, href: 'http://stickerjs.cmiscm.com/', target: '_blank' },
+                            { style: linkStyle, href: 'http://stickerjs.cmiscm.com/', target: '_blank' },
                             'Sticker.js'
                         ),
                         ' is used for the sticker effect on my picture in the sidebar which I have modified to show a flag underneath, ',
                         React.createElement(
                             'a',
-                            { className: 'roll', style: linkStyle, href: 'https://github.com/akiran/react-slick', target: '_blank' },
+                            { style: linkStyle, href: 'https://github.com/akiran/react-slick', target: '_blank' },
                             'React-Slick'
                         ),
                         ' port of Slick for the image carousels above and on the home page which I modified to be smooth auto-scrolling, ',
                         React.createElement(
                             'a',
-                            { className: 'roll', style: linkStyle, href: 'https://bl.ocks.org/mbostock/11337835', target: '_blank' },
+                            { style: linkStyle, href: 'https://bl.ocks.org/mbostock/11337835', target: '_blank' },
                             'Mike Bostock\'s D3 animation'
                         ),
                         ' of a randomly traversed spanning tree which I have modified slightly and used for the background color change effect, and ',
                         React.createElement(
                             'a',
-                            { className: 'roll', style: linkStyle, href: 'http://hakim.se/', target: '_blank' },
+                            { style: linkStyle, href: 'http://hakim.se/', target: '_blank' },
                             'Hakim El Hattab\'s Rolling Links'
                         ),
                         ' effect which I have modified to match the icons in the sidebar and to work with React-Router.'
@@ -27496,7 +27500,7 @@ var BasePage = React.createClass({
     render: function () {
 
         var sideStyle = {
-            height: window.innerHeight,
+            height: '100vh',
             color: 'white',
             background: '#003399',
             padding: '25',
@@ -28348,7 +28352,7 @@ var LargeIcon = React.createClass({
                 { className: 'row' },
                 React.createElement(
                     'a',
-                    { href: this.props.href, target: '_blank' },
+                    { href: this.props.href, target: this.props.href[0] == 'h' ? '_blank' : '' },
                     React.createElement('img', { src: 'img/' + this.props.img + '.png', alt: this.props.alt, width: '50', height: '50',
                         onMouseOver: this.mouseOver, onMouseOut: this.mouseOut,
                         className: this.state.hover ? "iconHigh" : "" })

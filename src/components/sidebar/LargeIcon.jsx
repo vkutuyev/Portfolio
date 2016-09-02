@@ -21,7 +21,7 @@ var LargeIcon = React.createClass({
         return (
             <div className='col-xs-4'>
                 <div className='row'>
-                    <a href={this.props.href} target="_blank">
+                    <a href={this.props.href} target={this.props.href[0] == 'h' ? '_blank' : ''}>
                         <img src={'img/'+this.props.img+'.png'} alt={this.props.alt} width='50' height='50'
                         onMouseOver={this.mouseOver} onMouseOut={this.mouseOut}
                         className={this.state.hover ? "iconHigh" : ""}/>
