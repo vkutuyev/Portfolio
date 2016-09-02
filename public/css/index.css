@@ -27,14 +27,6 @@ body {
 
 
 /********Animations*********/
-.mainHeadImg {
-    -webkit-animation-name: fadeAnim;
-    -webkit-animation-duration: 2s;
-    -moz-animation-name: fadeAnim;
-    -moz-animation-duration: 2s;
-    animation-name: fadeAnim;
-    animation-duration: 2s;
-}
 .helloText {
     opacity: 0;
     -webkit-animation-name: fadeAnim;

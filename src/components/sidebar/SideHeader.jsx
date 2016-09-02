@@ -19,8 +19,8 @@ var SideHeader = React.createClass({
                 textAlign: 'center',
                 textShadow: '2px 2px 4px rgba(0,0,0,0.8)',
                 fontFamily: 'Poiret One',
-                textWrap: 'normal',
-                marginBottom: '50',
+                wordWrap: 'break-word',
+                marginBottom: '25',
                 minHeight: '265'
             },
             nameStyle = {

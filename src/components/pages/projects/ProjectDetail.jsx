@@ -1,7 +1,15 @@
 var React = require('react');
 
 var ProjectDetailPage = React.createClass({
-
+    getInitialState: function() {
+        return {hovered: false};
+    },
+    hover: function() {
+        this.setState({hovered: true});
+    },
+    hoverStop: function() {
+        this.setState({hovered: false});
+    },
     render: function() {
 
         var projects = {
@@ -59,7 +67,7 @@ var ProjectDetailPage = React.createClass({
                 display: 'block'
             },
             linkStyle = {
-                textDecoration: 'none',
+                textDecoration: this.state.hovered ? 'underline' : 'none',
                 color: '#FFB347'
             },
             gifStyle = {
@@ -71,7 +79,8 @@ var ProjectDetailPage = React.createClass({
         return (
             <div>
                 <div className='row' style={titleStyle}>
-                    <h1 className='col-xs-8'><a href={projects[this.props.projName].url} target='_blank' style={linkStyle}>
+                    <h1 className='col-xs-8'><a href={projects[this.props.projName].url} target='_blank' style={linkStyle}
+                    onMouseOver={this.hover} onMouseOut={this.hoverStop}>
                         {projects[this.props.projName].name}
                     </a></h1>
                 </div>
@@ -86,7 +95,7 @@ var ProjectDetailPage = React.createClass({
                 </div>
                 <div className='col-xs-8' style={techStyle}>
                     <h4><u>Tech Used</u></h4>
-                    <h5>{projects[this.props.projName].tech}</h5>
+                    <h5 style={{fontFamily: 'Raleway'}}>{projects[this.props.projName].tech}</h5>
                 </div>
             </div>
         );

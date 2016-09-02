@@ -13,6 +13,7 @@ var Sidebar = React.createClass({
         return (
             <div style={sidebarStyle} id='sideBar'>
                 <SideHeader />
+                <img src='img/Separator.png' alt="sep" style={{width: '100%', marginBottom: '25px'}} />
                 <SideLinks />
             </div>
         )

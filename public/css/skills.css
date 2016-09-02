@@ -27,10 +27,7 @@
     animation-timing-function: ease;
 }
 
-/*.techItem {
-    animation-name: slideUp;
-    animation-duration: 0.4s;
-}*/
+/********React Anim.*********/
 .techItem-enter {
   opacity: 0.01;
 }
@@ -45,6 +42,7 @@
   opacity: 0.01;
   transition: opacity 250ms ease-in;
 }
+/****************************/
 
 /********Animations*********/
 @keyframes dropDown {

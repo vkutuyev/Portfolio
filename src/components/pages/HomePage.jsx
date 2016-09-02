@@ -1,4 +1,5 @@
 var React = require('react');
+var HomeCarousel = require('../HomeCarousel.jsx');
 
 
 var HomePage = React.createClass({
@@ -14,10 +15,9 @@ var HomePage = React.createClass({
 
         return (
             <div>
-                <div className='row'>
-                    <img className='mainHeadImg' src='img/SFShadow.png' alt="BG" width='100%' />
-                </div>
+                <HomeCarousel />
                 <div className='row' style={textStyle}>
+                    <img src='img/Separator.png' alt="sep" style={{marginBottom: '25px'}}/>
                     <div className='col-xs-8 col-xs-offset-2 helloText'>
                         Hello.
                     </div>

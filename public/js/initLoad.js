@@ -8,19 +8,12 @@ var adjustPic = function() {
     });
 };
 
-// Keep sidebar widths consistent on resizes
-var matchSideSize = function() {
-    var sideSize = $('#sideBar').css('width'),
-        newSize = parseFloat(sideSize.substring(0,sideSize.length-2)) + 50,
-        finalSize = newSize + 'px';
-    $('#sideLinks').attr('width', finalSize);
-};
 
-window.onload = function() {
+$(document).ready(function(){
     Sticker.init('.profile');
     adjustPic();
     linkify('a');
-};
+});
 
 window.onresize = function() {
     if(window.innerWidth < 650){
