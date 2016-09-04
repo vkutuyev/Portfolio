@@ -13,8 +13,8 @@ var AboutPage = React.createClass({
                 marginBottom: '25px'
             },
             catStyle = {
-                height: '40vh',
-                marginTop: '5vh',
+                height: '45vh',
+                marginTop: '2vh',
                 fontFamily: 'Baumans'
             },
             listHeadStyle = {
@@ -50,9 +50,12 @@ var AboutPage = React.createClass({
             <div>
                 <div className='row' style={catStyle}>
                     <h1 style={headerStyle}>About Me</h1>
-                    <div className='col-xs-7 col-xs-offset-1'>
+                    <div className='col-xs-8' style={{marginRight: '25px'}}>
                         <span style={siteText}>
-                            &nbsp;&nbsp;&nbsp;&nbsp;Hello.
+                            &nbsp;&nbsp;&nbsp;&nbsp;Hi, I'm Vadim, and it probably says something about me that this paragraph was the last thing I did on this site. I was born in Uzbekistan (then the Soviet Union, just to date myself) and grew up in Moscow until my family moved to California when I was 10, where I have lived since. I went to school in Orange County before going to college at UCLA as a computer science major, following the typical video games->computers->CS major trajectory. Having realized what computer science actually is, I promptly changed my major to avoid being angry at commas and semi-colons all day.
+                        </span>
+                        <span style={siteText}>
+                            &nbsp;&nbsp;&nbsp;&nbsp;It took a long time but it wasn't until I attended a coding bootcamp that I rediscovered my love for programming and logical problem solving. I have been happily coding since and look forward to picking up more skills and experience every week. In my spare time I run a fantasy football league with my friends, watch Formula 1 at stupidly early hours of the day, get frustrated by Liverpool's ability to constantly throw away wins, and try not to get too angry at the annual UCLA Football Inexplicable Loss™.
                         </span>
                     </div>
                     <div className='col-xs-3' style={caroStyle}>
@@ -61,7 +64,7 @@ var AboutPage = React.createClass({
                 </div>
                 <div className='row' style={catStyle}>
                     <h1 style={headerStyle}>About The Site</h1>
-                    <div className='col-xs-8 col-xs-offset-1'>
+                    <div className='col-xs-9'>
                         <span style={siteText}>
                             &nbsp;&nbsp;&nbsp;&nbsp;This site was created with React using Browserify after spending about four days learning the basics of React. As a result things are sometimes... less than optimal due to me using the site as a chance to practice various rendering and data passing/binding techniques as well as just general messing around with neat code I've found elsewhere.
                         </span>

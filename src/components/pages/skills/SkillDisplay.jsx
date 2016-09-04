@@ -199,33 +199,29 @@ var SkillDisplay = React.createClass({
                 <div className='row'>
                     <h1 style={headerStyle}>Technologies</h1>
                     <div className='col-xs-12' onMouseOver={this.hovered} onMouseOut={this.hoverLeft}>
-                        {techs[this.props.skName].map(function(tech){
-                            return (
-                                <div className='col-xs-3' style={{minWidth: '220px'}} key={Date.now() / 1000 + tech.name}>
-                                    <div className='row aimHere' style={technoStyle}>
-                                        <div className='col-xs-4 imgDiv'>
-                                            <img src={'img/techIcons/'+tech.logo} width='45vw' height='45vh'/>
-                                        </div>
-                                        <div className='col-xs-7 techBox' style={nameStyle}>
-                                            {tech.name}
-                                        </div>
+                        {techs[this.props.skName].map(tech =>
+                            <div className='col-xs-3' style={{minWidth: '220px'}} key={Date.now() / 1000 + tech.name}>
+                                <div className='row aimHere' style={technoStyle}>
+                                    <div className='col-xs-4 imgDiv'>
+                                        <img src={'img/techIcons/'+tech.logo} width='45vw' height='45vh'/>
+                                    </div>
+                                    <div className='col-xs-7 techBox' style={nameStyle}>
+                                        {tech.name}
                                     </div>
                                 </div>
-                            );
-                        })}
+                            </div>
+                        )}
                     </div>
                 </div>
                 <div className='row'>
                     <h1 style={headerStyle}>Techniques</h1>
                     <div style={techniStyle}>
                         <ReactCSSTransitionGroup transitionName="techItem" transitionEnterTimeout={250} transitionLeaveTimeout={250} transitionLeave={false}>
-                        {techniques[this.state.picked].map(function(line){
-                            return (
-                                <span style={{display: 'block'}} key={Date.now()/1000+line}>
-                                    {line}
-                                </span>
-                            );
-                        })}
+                        {techniques[this.state.picked].map(line =>
+                            <span style={{display: 'block'}} key={Date.now()/1000+line}>
+                                {line}
+                            </span>
+                        )}
                         </ReactCSSTransitionGroup>
                     </div>
                 </div>

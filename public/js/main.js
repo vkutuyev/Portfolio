@@ -27266,13 +27266,11 @@ var AboutCarousel = React.createClass({
         return React.createElement(
             Slider,
             settings,
-            pics.map(function (pic) {
-                return React.createElement(
-                    'div',
-                    { key: pic },
-                    React.createElement('img', { src: 'img/aboutCaro/' + pic + '.png', alt: 'Slide', key: pic, style: picStyle })
-                );
-            })
+            pics.map(pic => React.createElement(
+                'div',
+                { key: pic },
+                React.createElement('img', { src: 'img/aboutCaro/' + pic + '.png', alt: 'Slide', key: pic, style: picStyle })
+            ))
         );
     }
 });
@@ -27297,9 +27295,21 @@ var HomeCarousel = React.createClass({
         return React.createElement(
             Slider,
             settings,
-            React.createElement('img', { className: 'mainHeadImg', src: 'img/homeCaro/SFShadow.png', alt: 'BG' }),
-            React.createElement('img', { src: 'img/homeCaro/MuffMitzi.png', alt: 'BG' }),
-            React.createElement('img', { src: 'img/homeCaro/sofmuff.png', alt: 'BG' })
+            React.createElement(
+                'div',
+                null,
+                React.createElement('img', { className: 'mainHeadImg', src: 'img/homeCaro/SFShadow.png', alt: 'BG', width: '100%' })
+            ),
+            React.createElement(
+                'div',
+                null,
+                React.createElement('img', { src: 'img/homeCaro/MuffMitzi.png', alt: 'BG', width: '100%' })
+            ),
+            React.createElement(
+                'div',
+                null,
+                React.createElement('img', { src: 'img/homeCaro/sofmuff.png', alt: 'BG', width: '100%' })
+            )
         );
     }
 });
@@ -27323,8 +27333,8 @@ var AboutPage = React.createClass({
             marginBottom: '25px'
         },
             catStyle = {
-            height: '40vh',
-            marginTop: '5vh',
+            height: '45vh',
+            marginTop: '2vh',
             fontFamily: 'Baumans'
         },
             listHeadStyle = {
@@ -27369,11 +27379,16 @@ var AboutPage = React.createClass({
                 ),
                 React.createElement(
                     'div',
-                    { className: 'col-xs-7 col-xs-offset-1' },
+                    { className: 'col-xs-8', style: { marginRight: '25px' } },
                     React.createElement(
                         'span',
                         { style: siteText },
-                        '    Hello.'
+                        '    Hi, I\'m Vadim, and it probably says something about me that this paragraph was the last thing I did on this site. I was born in Uzbekistan (then the Soviet Union, just to date myself) and grew up in Moscow until my family moved to California when I was 10, where I have lived since. I went to school in Orange County before going to college at UCLA as a computer science major, following the typical video games->computers->CS major trajectory. Having realized what computer science actually is, I promptly changed my major to avoid being angry at commas and semi-colons all day.'
+                    ),
+                    React.createElement(
+                        'span',
+                        { style: siteText },
+                        '    It took a long time but it wasn\'t until I attended a coding bootcamp that I rediscovered my love for programming and logical problem solving. I have been happily coding since and look forward to picking up more skills and experience every week. In my spare time I run a fantasy football league with my friends, watch Formula 1 at stupidly early hours of the day, get frustrated by Liverpool\'s ability to constantly throw away wins, and try not to get too angry at the annual UCLA Football Inexplicable Loss™.'
                     )
                 ),
                 React.createElement(
@@ -27392,7 +27407,7 @@ var AboutPage = React.createClass({
                 ),
                 React.createElement(
                     'div',
-                    { className: 'col-xs-8 col-xs-offset-1' },
+                    { className: 'col-xs-9' },
                     React.createElement(
                         'span',
                         { style: siteText },
@@ -27532,11 +27547,31 @@ module.exports = BasePage;
 },{"../sidebar/Sidebar.jsx":263,"react":243,"react-router":90}],252:[function(require,module,exports){
 var React = require('react');
 var HomeCarousel = require('../HomeCarousel.jsx');
+var ReactCSSTransitionGroup = require('react-addons-css-transition-group');
 
 var HomePage = React.createClass({
     displayName: 'HomePage',
 
+    getInitialState: function () {
+        return { ind: 0 };
+    },
+    componentDidMount: function () {
+        this.cycleText = setInterval(function () {
+            var newInd = 0;
+            if (this.state.ind == 5) {
+                newInd = 1;
+            } else {
+                newInd = this.state.ind + 1;
+            }
+            this.setState({ ind: newInd });
+        }.bind(this), 5000);
+    },
+    componentWillUnmount: function () {
+        clearInterval(this.cycleText);
+    },
     render: function () {
+
+        var fakeText = ['Welcome to my portfolio.', '~Inspirational Quote~', '~Quirky Personality Trait~', "~Cool Band You've Never Heard Of~", "~That One Really Good Pho Place But Not The Really Popular One~", "~That Movie That Famous Director Made In High School For $500~"];
 
         var textStyle = {
             fontFamily: 'Baumans',
@@ -27561,8 +27596,12 @@ var HomePage = React.createClass({
                 ),
                 React.createElement(
                     'div',
-                    { className: 'col-xs-8 col-xs-offset-2 welcomeText' },
-                    'Welcome to my portfolio.'
+                    { className: 'col-xs-8 col-xs-offset-2' },
+                    React.createElement(
+                        'span',
+                        { className: 'fakeText', style: { fontSize: '0.8em', fontFamily: 'Raleway' } },
+                        fakeText[this.state.ind]
+                    )
                 )
             )
         );
@@ -27571,7 +27610,7 @@ var HomePage = React.createClass({
 
 module.exports = HomePage;
 
-},{"../HomeCarousel.jsx":249,"react":243}],253:[function(require,module,exports){
+},{"../HomeCarousel.jsx":249,"react":243,"react-addons-css-transition-group":58}],253:[function(require,module,exports){
 var React = require('react');
 
 var ResumePage = React.createClass({
@@ -28094,26 +28133,24 @@ var SkillDisplay = React.createClass({
                 React.createElement(
                     'div',
                     { className: 'col-xs-12', onMouseOver: this.hovered, onMouseOut: this.hoverLeft },
-                    techs[this.props.skName].map(function (tech) {
-                        return React.createElement(
+                    techs[this.props.skName].map(tech => React.createElement(
+                        'div',
+                        { className: 'col-xs-3', style: { minWidth: '220px' }, key: Date.now() / 1000 + tech.name },
+                        React.createElement(
                             'div',
-                            { className: 'col-xs-3', style: { minWidth: '220px' }, key: Date.now() / 1000 + tech.name },
+                            { className: 'row aimHere', style: technoStyle },
                             React.createElement(
                                 'div',
-                                { className: 'row aimHere', style: technoStyle },
-                                React.createElement(
-                                    'div',
-                                    { className: 'col-xs-4 imgDiv' },
-                                    React.createElement('img', { src: 'img/techIcons/' + tech.logo, width: '45vw', height: '45vh' })
-                                ),
-                                React.createElement(
-                                    'div',
-                                    { className: 'col-xs-7 techBox', style: nameStyle },
-                                    tech.name
-                                )
+                                { className: 'col-xs-4 imgDiv' },
+                                React.createElement('img', { src: 'img/techIcons/' + tech.logo, width: '45vw', height: '45vh' })
+                            ),
+                            React.createElement(
+                                'div',
+                                { className: 'col-xs-7 techBox', style: nameStyle },
+                                tech.name
                             )
-                        );
-                    })
+                        )
+                    ))
                 )
             ),
             React.createElement(
@@ -28130,13 +28167,11 @@ var SkillDisplay = React.createClass({
                     React.createElement(
                         ReactCSSTransitionGroup,
                         { transitionName: 'techItem', transitionEnterTimeout: 250, transitionLeaveTimeout: 250, transitionLeave: false },
-                        techniques[this.state.picked].map(function (line) {
-                            return React.createElement(
-                                'span',
-                                { style: { display: 'block' }, key: Date.now() / 1000 + line },
-                                line
-                            );
-                        })
+                        techniques[this.state.picked].map(line => React.createElement(
+                            'span',
+                            { style: { display: 'block' }, key: Date.now() / 1000 + line },
+                            line
+                        ))
                     )
                 )
             )

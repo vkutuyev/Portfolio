@@ -42,24 +42,30 @@ body {
     animation-delay: 1s;
     animation-fill-mode: forwards;
 }
-.welcomeText {
-    opacity: 0;
-    -webkit-animation-name: fadeAnim;
-    -webkit-animation-duration: 2s;
-    -webkit-animation-delay: 3s;
+.fakeText {
+    -webkit-animation-name: fadeInOut;
+    -webkit-animation-duration: 5s;
     -webkit-animation-fill-mode: forwards;
-    -moz-animation-name: fadeAnim;
-    -moz-animation-duration: 2s;
-    -moz-animation-delay: 3s;
+    -webkit-animation-iteration-count: infinite;
+    -moz-animation-name: fadeInOut;
+    -moz-animation-duration: 5s;
     -moz-animation-fill-mode: forwards;
-    animation-name: fadeAnim;
-    animation-duration: 2s;
-    animation-delay: 3s;
+    -moz-animation-iteration-count: infinite;
+    animation-name: fadeInOut;
+    animation-duration: 5s;
     animation-fill-mode: forwards;
+    animation-iteration-count: infinite;
 }
 
 @keyframes fadeAnim {
   0%   { opacity: 0; }
   100% { opacity: 1; }
+}
+@keyframes fadeInOut {
+    0%     { opacity: 0; }
+    /*25%    { opacity: 1; }*/
+    50%    { opacity: 1; }
+    /*75%    { opacity: 1; }*/
+    100%   { opacity: 0; }
 }
 /***************************/

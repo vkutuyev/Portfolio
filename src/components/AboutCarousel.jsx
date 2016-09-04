@@ -11,20 +11,7 @@ var AboutCarousel = React.createClass({
             cssEase: 'linear'
         };
 
-        var pics = [
-            'meNastya',
-            'arcade',
-            'maze',
-            'muffinMitzi',
-            'naviStinar',
-            'snowboard',
-            'muffinSofia',
-            'build',
-            'medusa',
-            'muffinWine',
-            'wall',
-            'waterfall'
-        ];
+        var pics = [ 'meNastya', 'arcade', 'maze', 'muffinMitzi', 'naviStinar', 'snowboard', 'muffinSofia', 'build', 'medusa', 'muffinWine', 'wall', 'waterfall'];
 
         var picStyle = {
             height: '250px',
@@ -33,13 +20,11 @@ var AboutCarousel = React.createClass({
 
         return (
             <Slider {...settings}>
-                {pics.map(function(pic){
-                    return (
-                        <div key={pic}>
-                            <img src={'img/aboutCaro/'+pic+'.png'} alt='Slide' key={pic} style={picStyle} />
-                        </div>
-                    );
-                })}
+                {pics.map(pic =>
+                    <div key={pic}>
+                        <img src={'img/aboutCaro/'+pic+'.png'} alt='Slide' key={pic} style={picStyle} />
+                    </div>
+                )}
             </Slider>
         );
     }

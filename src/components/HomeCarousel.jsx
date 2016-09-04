@@ -12,10 +12,16 @@ var HomeCarousel = React.createClass({
             speed: 3000
         };
         return (
-            <Slider {...settings} >
-                <img className='mainHeadImg' src='img/homeCaro/SFShadow.png' alt="BG"  />
-                <img src='img/homeCaro/MuffMitzi.png' alt="BG"  />
-                <img src='img/homeCaro/sofmuff.png' alt="BG"  />
+            <Slider {...settings}>
+                <div>
+                    <img className='mainHeadImg' src='img/homeCaro/SFShadow.png' alt="BG" width='100%' />
+                </div>
+                <div>
+                    <img src='img/homeCaro/MuffMitzi.png' alt="BG" width='100%' />
+                </div>
+                <div>
+                    <img src='img/homeCaro/sofmuff.png' alt="BG" width='100%' />
+                </div>
             </Slider>
         );
     }
