@@ -27660,7 +27660,7 @@ var ProjectDetailPage = React.createClass({
                 'made': "Made in three days as part of a two-person team.",
                 'tech': 'Node.js, AngularJS, Express.js, socket.io, HTML5, jQuery',
                 'gif': 'CodeBoard.gif',
-                'url': 'http://52.41.164.18/#/'
+                'url': 'http://codeboard.vkutuyev.com/'
             },
             'WeatherShouldIGo': {
                 'name': "#Weather Should I Go?",
@@ -28467,14 +28467,14 @@ var SideHeader = React.createClass({
                 'div',
                 { className: 'row lighlinksFull', style: lighlinksStyle },
                 React.createElement(LargeIcon, { href: 'https://www.linkedin.com/in/vkutuyev', img: 'linkedLogo', alt: 'LinkedIn' }),
-                React.createElement(LargeIcon, { href: 'mailto:vkutuyev@gmail.com', img: 'gmailLogo', alt: 'Email' }),
+                React.createElement(LargeIcon, { href: 'mailto:contact@vkutuyev.com', img: 'gmailLogo', alt: 'Email' }),
                 React.createElement(LargeIcon, { href: 'https://github.com/vkutuyev', img: 'githubLogo', alt: 'GitHub' })
             ),
             React.createElement(
                 'div',
                 { className: 'lighlinksShort' },
                 React.createElement(SmallIcon, { href: 'https://www.linkedin.com/in/vkutuyev', img: 'linkedLogo', alt: 'LinkedIn' }),
-                React.createElement(SmallIcon, { href: 'mailto:vkutuyev@gmail.com', img: 'gmailLogo', alt: 'Email' }),
+                React.createElement(SmallIcon, { href: 'mailto:contact@vkutuyev.com', img: 'gmailLogo', alt: 'Email' }),
                 React.createElement(SmallIcon, { href: 'https://github.com/vkutuyev', img: 'githubLogo', alt: 'GitHub' })
             )
         );

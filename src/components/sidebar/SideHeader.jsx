@@ -42,12 +42,12 @@ var SideHeader = React.createClass({
                 </div>
                 <div className='row lighlinksFull' style={lighlinksStyle}>
                     <LargeIcon href='https://www.linkedin.com/in/vkutuyev' img='linkedLogo' alt='LinkedIn' />
-                    <LargeIcon href='mailto:vkutuyev@gmail.com' img='gmailLogo' alt='Email' />
+                    <LargeIcon href='mailto:contact@vkutuyev.com' img='gmailLogo' alt='Email' />
                     <LargeIcon href='https://github.com/vkutuyev' img='githubLogo' alt='GitHub' />
                 </div>
                 <div className='lighlinksShort'>
                     <SmallIcon href='https://www.linkedin.com/in/vkutuyev' img='linkedLogo' alt='LinkedIn' />
-                    <SmallIcon href='mailto:vkutuyev@gmail.com' img='gmailLogo' alt='Email' />
+                    <SmallIcon href='mailto:contact@vkutuyev.com' img='gmailLogo' alt='Email' />
                     <SmallIcon href='https://github.com/vkutuyev' img='githubLogo' alt='GitHub' />
                 </div>
             </div>

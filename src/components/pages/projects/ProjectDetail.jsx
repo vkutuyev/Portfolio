@@ -28,7 +28,7 @@ var ProjectDetailPage = React.createClass({
                     'made': "Made in three days as part of a two-person team.",
                     'tech': 'Node.js, AngularJS, Express.js, socket.io, HTML5, jQuery',
                     'gif': 'CodeBoard.gif',
-                    'url': 'http://52.41.164.18/#/'
+                    'url': 'http://codeboard.vkutuyev.com/'
                 },
                 'WeatherShouldIGo' : {
                     'name': "#Weather Should I Go?",
