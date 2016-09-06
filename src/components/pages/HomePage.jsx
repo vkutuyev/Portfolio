@@ -8,15 +8,19 @@ var HomePage = React.createClass({
         return {ind: 0};
     },
     componentDidMount: function() {
+        var sound = document.getElementById('rimshot');
         this.cycleText = setInterval(function(){
             var newInd = 0;
-            if(this.state.ind == 5){
-                newInd = 1;
-            }
-            else {
-                newInd = this.state.ind + 1;
-            }
+            newInd = this.state.ind + 1;
             this.setState({ind: newInd});
+            if(this.state.ind == 6){
+                setTimeout(function(){
+                    sound.play();
+                }, 1500);
+            }
+            if(this.state.ind == 7){
+                clearInterval(this.cycleText);
+            }
         }.bind(this), 5000);
     },
     componentWillUnmount: function() {
@@ -24,7 +28,7 @@ var HomePage = React.createClass({
     },
     render: function() {
 
-        var fakeText = ['Welcome to my portfolio.', '~Inspirational Quote~', '~Quirky Personality Trait~', "~Cool Band You've Never Heard Of~", "~That One Really Good Pho Place But Not The Really Popular One~", "~That Movie That Famous Director Made In High School For $500~"]
+        var fakeText = ['Welcome to my portfolio.', 'I\'m not really sure what to put here.', 'Uh...let\'s see how about...', '~Inspirational Quote~', 'Hmm...no that doesn\'t seem quite right.', 'How about a joke?', 'Swift documentation is great and always helpful.', ''];
 
         var textStyle = {
                 fontFamily: 'Baumans',
@@ -48,6 +52,9 @@ var HomePage = React.createClass({
                         </span>
                     </div>
                 </div>
+                <audio id='rimshot'>
+                    <source src="sound/rimshot.mp3" type="audio/mpeg" />
+                </audio>
             </div>
         );
     }
