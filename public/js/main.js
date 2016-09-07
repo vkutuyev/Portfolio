@@ -27220,7 +27220,7 @@ var BasePage = require('./components/pages/BasePage.jsx');
 var HomePage = require('./components/pages/HomePage.jsx');
 var ProjectPage = require('./components/pages/projects/ProjectPage.jsx');
 var SkillsPage = require('./components/pages/skills/SkillsPage.jsx');
-var ResumePage = require('./components/pages/ResumePage.jsx');
+var ResumePage = require('./components/pages/resume/ResumePage.jsx');
 var AboutPage = require('./components/pages/AboutPage.jsx');
 
 // Routes
@@ -27240,7 +27240,7 @@ var Routes = React.createElement(
 
 module.exports = Routes;
 
-},{"./components/pages/AboutPage.jsx":250,"./components/pages/BasePage.jsx":251,"./components/pages/HomePage.jsx":252,"./components/pages/ResumePage.jsx":253,"./components/pages/projects/ProjectPage.jsx":256,"./components/pages/skills/SkillsPage.jsx":258,"react":243,"react-router":90}],248:[function(require,module,exports){
+},{"./components/pages/AboutPage.jsx":250,"./components/pages/BasePage.jsx":251,"./components/pages/HomePage.jsx":252,"./components/pages/projects/ProjectPage.jsx":255,"./components/pages/resume/ResumePage.jsx":258,"./components/pages/skills/SkillsPage.jsx":260,"react":243,"react-router":90}],248:[function(require,module,exports){
 var React = require('react');
 var Slider = require('react-slick');
 
@@ -27352,8 +27352,7 @@ var AboutPage = React.createClass({
             textShadow: '1px 1px 4px black',
             fontSize: '0.5em',
             display: 'block',
-            marginBottom: '10px',
-            textOverflow: 'string'
+            marginBottom: '10px'
         },
             linkStyle = {
             textDecoration: 'none',
@@ -27368,7 +27367,7 @@ var AboutPage = React.createClass({
 
         return React.createElement(
             'div',
-            null,
+            { id: 'aboutPage' },
             React.createElement(
                 'div',
                 { className: 'row', style: catStyle },
@@ -27402,7 +27401,7 @@ var AboutPage = React.createClass({
                 { className: 'row', style: catStyle },
                 React.createElement(
                     'h1',
-                    { style: headerStyle },
+                    { className: 'col-xs-12', style: headerStyle },
                     'About The Site'
                 ),
                 React.createElement(
@@ -27422,7 +27421,7 @@ var AboutPage = React.createClass({
                             { style: linkStyle, href: 'http://stickerjs.cmiscm.com/', target: '_blank' },
                             'Sticker.js'
                         ),
-                        ' is used for the sticker effect on my picture in the sidebar which I have modified to show a flag underneath, ',
+                        ' is used for the sticker effect on my picture in the sidebar, ',
                         React.createElement(
                             'a',
                             { style: linkStyle, href: 'https://github.com/akiran/react-slick', target: '_blank' },
@@ -27515,11 +27514,11 @@ var BasePage = React.createClass({
     render: function () {
 
         var sideStyle = {
-            height: '100vh',
             color: 'white',
             background: '#003399',
             padding: '25',
-            minWidth: '155'
+            minWidth: '155',
+            position: 'fixed'
         },
             mainStyle = {
             minWidth: '25'
@@ -27535,7 +27534,7 @@ var BasePage = React.createClass({
             ),
             React.createElement(
                 'div',
-                { className: 'col-xs-9', style: mainStyle, id: 'contentWindow' },
+                { className: 'col-xs-9 col-xs-offset-3', style: mainStyle, id: 'contentWindow' },
                 this.props.children
             )
         );
@@ -27544,7 +27543,7 @@ var BasePage = React.createClass({
 
 module.exports = BasePage;
 
-},{"../sidebar/Sidebar.jsx":263,"react":243,"react-router":90}],252:[function(require,module,exports){
+},{"../sidebar/Sidebar.jsx":265,"react":243,"react-router":90}],252:[function(require,module,exports){
 var React = require('react');
 var HomeCarousel = require('../HomeCarousel.jsx');
 var ReactCSSTransitionGroup = require('react-addons-css-transition-group');
@@ -27566,7 +27565,7 @@ var HomePage = React.createClass({
                     sound.play();
                 }, 1500);
             }
-            if (this.state.ind == 7) {
+            if (this.state.ind == 8) {
                 clearInterval(this.cycleText);
             }
         }.bind(this), 5000);
@@ -27576,7 +27575,7 @@ var HomePage = React.createClass({
     },
     render: function () {
 
-        var fakeText = ['Welcome to my portfolio.', 'I\'m not really sure what to put here.', 'Uh...let\'s see how about...', '~Inspirational Quote~', 'Hmm...no that doesn\'t seem quite right.', 'How about a joke?', 'Swift documentation is great and always helpful.', ''];
+        var fakeText = ['Welcome to my portfolio.', 'I\'m not really sure what to put here.', 'Uh...let\'s see how about...', '~Inspirational Quote~', 'Hmm...no that doesn\'t seem quite right.', 'How about a joke?', 'Xcode\'s debugging messages are useful.', '...sorry', ''];
 
         var textStyle = {
             fontFamily: 'Baumans',
@@ -27601,7 +27600,7 @@ var HomePage = React.createClass({
                 ),
                 React.createElement(
                     'div',
-                    { className: 'col-xs-8 col-xs-offset-2' },
+                    { className: 'col-xs-10 col-xs-offset-1' },
                     React.createElement(
                         'span',
                         { className: 'fakeText', style: { fontSize: '0.8em', fontFamily: 'Raleway' } },
@@ -27621,23 +27620,6 @@ var HomePage = React.createClass({
 module.exports = HomePage;
 
 },{"../HomeCarousel.jsx":249,"react":243,"react-addons-css-transition-group":58}],253:[function(require,module,exports){
-var React = require('react');
-
-var ResumePage = React.createClass({
-    displayName: 'ResumePage',
-
-    render: function () {
-        return React.createElement(
-            'div',
-            null,
-            'Resume!'
-        );
-    }
-});
-
-module.exports = ResumePage;
-
-},{"react":243}],254:[function(require,module,exports){
 var React = require('react');
 
 var ProjectDetailPage = React.createClass({
@@ -27782,7 +27764,7 @@ var ProjectDetailPage = React.createClass({
 
 module.exports = ProjectDetailPage;
 
-},{"react":243}],255:[function(require,module,exports){
+},{"react":243}],254:[function(require,module,exports){
 var React = require('react');
 
 var ProjectHeaderItem = React.createClass({
@@ -27870,7 +27852,7 @@ var ProjectHeaderItem = React.createClass({
 
 module.exports = ProjectHeaderItem;
 
-},{"react":243}],256:[function(require,module,exports){
+},{"react":243}],255:[function(require,module,exports){
 var React = require('react');
 var ProjectHeaderItem = require('./ProjectHeaderItem.jsx');
 var ProjectDetail = require('./ProjectDetail.jsx');
@@ -27958,7 +27940,370 @@ var ProjectPage = React.createClass({
 
 module.exports = ProjectPage;
 
-},{"./ProjectDetail.jsx":254,"./ProjectHeaderItem.jsx":255,"react":243}],257:[function(require,module,exports){
+},{"./ProjectDetail.jsx":253,"./ProjectHeaderItem.jsx":254,"react":243}],256:[function(require,module,exports){
+var React = require('react');
+
+var ProjectList = React.createClass({
+    displayName: 'ProjectList',
+
+    render: function () {
+
+        var projLinkStyle = {
+            textDecoration: 'none',
+            color: 'yellow'
+        },
+            projStyle = {
+            fontSize: '0.5em'
+        };
+
+        var projects = {
+            'L4A': {
+                name: 'Letters4Animals.org',
+                url: 'http://letters4animals.org',
+                desc: 'Developed a fully responsive website for an animal advocacy group that takes advantage of multiple APIs in order to dynamically generate a fully-formatted, rich-text letter to a user and pre-populates it with information about a selected cause and their local government representative. Designed, developed, and deployed in one month as part of a scrum development team of 7 people.'
+            },
+            'CodeBoard': {
+                name: 'CodeBoard',
+                url: 'http://codeboard.vkutuyev.com',
+                desc: 'An online, collaborative whiteboard that lets users share code, draw on an HTML5 Canvas whiteboard, and chat with each other in realtime. Features the ability to save whiteboards, join pre-made lobbies, and share/work on large snippets of code with others online. Can be used as a teaching tool or as a debugging tool during a project’s development cycle. Made in three days as part of a two-person team.'
+            },
+            'Procedural': {
+                name: 'The Procedural Game',
+                url: 'https://github.com/vkutuyev/iOS_Procedural_Game',
+                desc: 'A side-scrolling platform with logically randomized, procedural level generation. Features three different play modes, a tutorial section with an AI-controller demonstration of the game, a dynamic difficulty that increases as the player gets further,  and a persistent score system that stores a user’s best score in an online database. Built in four days as a solo project and created completely programmatically with 1,700 lines of code in Xcode.'
+            }
+        };
+
+        return React.createElement(
+            'div',
+            { className: 'row' },
+            React.createElement(
+                'h4',
+                null,
+                React.createElement(
+                    'a',
+                    { href: projects[this.props.project].url, target: '_blank', style: projLinkStyle },
+                    projects[this.props.project].name
+                )
+            ),
+            React.createElement(
+                'p',
+                { style: projStyle },
+                projects[this.props.project].desc
+            )
+        );
+    }
+});
+
+module.exports = ProjectList;
+
+},{"react":243}],257:[function(require,module,exports){
+var React = require('react');
+
+var ResumeList = React.createClass({
+    displayName: 'ResumeList',
+
+    render: function () {
+
+        var categories = {
+            'Languages': ['PHP', 'JavaScript', 'Python', 'Swift', 'HTML', 'CSS'],
+            'Frameworks': ['CodeIgniter', 'AngularJS', 'Express.js', 'React', 'Django', 'Bootstrap'],
+            'Databases': ['MySQL', 'PostgreSQL', 'MongoDB', 'Google Firebase', 'Swift Core Data', 'React Flux/Reflux'],
+            'DevOps': ['Node.js', 'AWS EC2', 'AWS Lambda', 'Nginx', 'PM2', 'Ubuntu'],
+            'Software': ['MySQL Workbench', 'Xcode', 'Adobe Photoshop, Premiere, After Effects, Audition', 'Microsoft Office', 'Git']
+        };
+
+        var liStyle = {
+            fontSize: '0.8em'
+        };
+
+        return React.createElement(
+            'div',
+            { className: 'col-xs-6' },
+            React.createElement(
+                'ul',
+                { style: { textAlign: 'left', fontSize: '0.5em' } },
+                React.createElement(
+                    'lh',
+                    { style: { textDecoration: 'underline', color: 'yellow' } },
+                    this.props.category,
+                    ':'
+                ),
+                categories[this.props.category].map(function (item) {
+                    return React.createElement(
+                        'li',
+                        { style: liStyle, key: item },
+                        item
+                    );
+                })
+            )
+        );
+    }
+});
+
+module.exports = ResumeList;
+
+},{"react":243}],258:[function(require,module,exports){
+var React = require('react');
+var ResumeList = require('./ResumeList.jsx');
+var ProjectList = require('./ProjectList.jsx');
+
+var ResumePage = React.createClass({
+    displayName: 'ResumePage',
+
+    render: function () {
+
+        var mainStyle = {
+            textShadow: '1px 1px 4px black',
+            fontFamily: 'Baumans',
+            marginTop: '2%',
+            marginBottom: '2%'
+
+        },
+            nameStyle = {
+            textAlign: 'center',
+            fontSize: '1em'
+        },
+            infoStyle = {
+            textAlign: 'center',
+            fontSize: '0.7em',
+            verticalAlign: 'middle'
+        },
+            sepStyle = {
+            textAlign: 'center',
+            color: 'yellow',
+            verticalAlign: 'middle'
+        },
+            eduexpTextStyle = {
+            fontSize: '0.5em'
+        };
+
+        return React.createElement(
+            'div',
+            { style: mainStyle, id: 'resumePage' },
+            React.createElement(
+                'div',
+                { className: 'row' },
+                React.createElement(
+                    'div',
+                    { className: 'col-xs-4 col-xs-offset-4', style: nameStyle },
+                    React.createElement(
+                        'span',
+                        null,
+                        'Vadim Kutuyev'
+                    )
+                )
+            ),
+            React.createElement(
+                'div',
+                { className: 'row' },
+                React.createElement(
+                    'div',
+                    { className: 'col-xs-8 col-xs-offset-2' },
+                    React.createElement(
+                        'div',
+                        { style: { width: '100%', textAlign: 'center', lineHeight: '80%' } },
+                        React.createElement(
+                            'span',
+                            { style: infoStyle },
+                            'San Jose, CA'
+                        ),
+                        React.createElement(
+                            'span',
+                            { style: sepStyle },
+                            '  ||  '
+                        ),
+                        React.createElement(
+                            'span',
+                            { style: infoStyle },
+                            '(949) 292 - 7463'
+                        ),
+                        React.createElement(
+                            'span',
+                            { style: sepStyle },
+                            '  ||  '
+                        ),
+                        React.createElement(
+                            'span',
+                            { style: infoStyle },
+                            'vkutuyev@gmail.com'
+                        )
+                    )
+                )
+            ),
+            React.createElement(
+                'div',
+                { className: 'row', style: { marginBottom: '30px' } },
+                React.createElement(
+                    'div',
+                    { className: 'col-xs-8 col-xs-offset-2' },
+                    React.createElement(
+                        'div',
+                        { style: { width: '100%', textAlign: 'center', lineHeight: '80%' } },
+                        React.createElement(
+                            'span',
+                            { style: infoStyle },
+                            React.createElement(
+                                'a',
+                                { href: 'http://github.com/vkutuyev', target: '_blank', style: { textDecoration: 'none', color: 'white' } },
+                                'github.com/vkutuyev/'
+                            )
+                        ),
+                        React.createElement(
+                            'span',
+                            { style: sepStyle },
+                            '  ||  '
+                        ),
+                        React.createElement(
+                            'span',
+                            { style: infoStyle },
+                            React.createElement(
+                                'a',
+                                { href: 'http://linkedin.com/in/vkutuyev', target: '_blank', style: { textDecoration: 'none', color: 'white' } },
+                                'linkedin.com/in/vkutuyev'
+                            )
+                        )
+                    )
+                )
+            ),
+            React.createElement(
+                'div',
+                { className: 'row' },
+                React.createElement(
+                    'div',
+                    { className: 'col-xs-4', style: { textAlign: 'center' } },
+                    React.createElement(
+                        'h3',
+                        null,
+                        'Skills'
+                    ),
+                    React.createElement(
+                        'div',
+                        { className: 'row' },
+                        React.createElement(ResumeList, { category: 'Languages' }),
+                        React.createElement(ResumeList, { category: 'Frameworks' })
+                    ),
+                    React.createElement(
+                        'div',
+                        { className: 'row' },
+                        React.createElement(ResumeList, { category: 'Databases' }),
+                        React.createElement(ResumeList, { category: 'DevOps' })
+                    ),
+                    React.createElement(
+                        'div',
+                        { className: 'row' },
+                        React.createElement(ResumeList, { category: 'Software' })
+                    )
+                ),
+                React.createElement(
+                    'div',
+                    { className: 'col-xs-7', style: { marginLeft: '25px' } },
+                    React.createElement(
+                        'h3',
+                        { style: { textAlign: 'center' } },
+                        'Projects'
+                    ),
+                    React.createElement(ProjectList, { project: 'L4A' }),
+                    React.createElement(ProjectList, { project: 'CodeBoard' }),
+                    React.createElement(ProjectList, { project: 'Procedural' })
+                )
+            ),
+            React.createElement(
+                'div',
+                { className: 'row', style: { textAlign: 'center', marginTop: '25px' } },
+                React.createElement(
+                    'div',
+                    { className: 'col-xs-5 col-xs-offset-1' },
+                    React.createElement(
+                        'h3',
+                        null,
+                        'Education'
+                    ),
+                    React.createElement(
+                        'div',
+                        { className: 'row', style: { textAlign: 'left', marginLeft: '10px' } },
+                        React.createElement(
+                            'h4',
+                            { style: { color: 'yellow' } },
+                            'Coding Dojo'
+                        ),
+                        React.createElement(
+                            'h5',
+                            { style: { margin: 0 } },
+                            'Double Black Belt'
+                        ),
+                        React.createElement(
+                            'h5',
+                            { style: { marginTop: 0 } },
+                            'San Jose, CA    March 2016 - July 2016'
+                        ),
+                        React.createElement(
+                            'p',
+                            { style: eduexpTextStyle },
+                            '14-week immersive coding boot camp requiring over 1000 hours to retain proficient web development skills. Gained proficiency in various web development aspects for multiple stacks. This focused education provided a means to obtain the skills necessary to deploy a full website from client to server to database while acquiring the knowledge and skills for a full stack developer.'
+                        )
+                    ),
+                    React.createElement(
+                        'div',
+                        { className: 'row', style: { textAlign: 'left', marginLeft: '10px' } },
+                        React.createElement(
+                            'h4',
+                            { style: { color: 'yellow' } },
+                            'University of California - Los Angeles'
+                        ),
+                        React.createElement(
+                            'h5',
+                            null,
+                            'Los Angeles, CA    Sept 2004 - Jan 2006'
+                        ),
+                        React.createElement(
+                            'p',
+                            { style: eduexpTextStyle },
+                            'Admitted and enrolled as Computer Science major.'
+                        )
+                    )
+                ),
+                React.createElement(
+                    'div',
+                    { className: 'col-xs-5' },
+                    React.createElement(
+                        'h3',
+                        null,
+                        'Experience'
+                    ),
+                    React.createElement(
+                        'div',
+                        { className: 'row', style: { textAlign: 'left', marginLeft: '10px' } },
+                        React.createElement(
+                            'h4',
+                            { style: { color: 'yellow' } },
+                            'Scrum Developer'
+                        ),
+                        React.createElement(
+                            'h5',
+                            { style: { margin: 0 } },
+                            'FMFA, Inc.'
+                        ),
+                        React.createElement(
+                            'h5',
+                            { style: { marginTop: 0 } },
+                            'San Jose, CA    July 2016'
+                        ),
+                        React.createElement(
+                            'p',
+                            { style: eduexpTextStyle },
+                            'Worked as an unpaid contract developer in a full Scrum development team of 7 people to deliver a fully-functional website to a very happy customer on time after having only one month to go from design to deployment. Was mostly responsible for connecting the front-end to the back-end API and database calls, as well as implementing the functionality to let users save pre-formatted/populated letters to their computers or print them out from the website directly. Also often took charge of communication between team members in order to maintain a smooth development process and coordinate between members who were working from home and those who were present locally.'
+                        )
+                    )
+                )
+            )
+        );
+    }
+});
+
+module.exports = ResumePage;
+
+},{"./ProjectList.jsx":256,"./ResumeList.jsx":257,"react":243}],259:[function(require,module,exports){
 var React = require('react');
 var ReactCSSTransitionGroup = require('react-addons-css-transition-group');
 
@@ -28191,7 +28536,7 @@ var SkillDisplay = React.createClass({
 
 module.exports = SkillDisplay;
 
-},{"react":243,"react-addons-css-transition-group":58}],258:[function(require,module,exports){
+},{"react":243,"react-addons-css-transition-group":58}],260:[function(require,module,exports){
 var React = require('react');
 var SkillDisplay = require('./SkillDisplay.jsx');
 
@@ -28367,7 +28712,7 @@ var SkillsPage = React.createClass({
 
 module.exports = SkillsPage;
 
-},{"./SkillDisplay.jsx":257,"react":243}],259:[function(require,module,exports){
+},{"./SkillDisplay.jsx":259,"react":243}],261:[function(require,module,exports){
 var React = require('react');
 
 var LargeIcon = React.createClass({
@@ -28418,7 +28763,7 @@ var LargeIcon = React.createClass({
 
 module.exports = LargeIcon;
 
-},{"react":243}],260:[function(require,module,exports){
+},{"react":243}],262:[function(require,module,exports){
 var React = require('react');
 var LargeIcon = require('./LargeIcon.jsx');
 var SmallIcon = require('./SmallIcon.jsx');
@@ -28493,7 +28838,7 @@ var SideHeader = React.createClass({
 
 module.exports = SideHeader;
 
-},{"./LargeIcon.jsx":259,"./SmallIcon.jsx":264,"react":243}],261:[function(require,module,exports){
+},{"./LargeIcon.jsx":261,"./SmallIcon.jsx":266,"react":243}],263:[function(require,module,exports){
 var React = require('react');
 var ReactRouter = require('react-router');
 var Link = ReactRouter.Link;
@@ -28550,7 +28895,7 @@ var SideLinkItem = React.createClass({
 
 module.exports = SideLinkItem;
 
-},{"react":243,"react-router":90}],262:[function(require,module,exports){
+},{"react":243,"react-router":90}],264:[function(require,module,exports){
 var React = require('react');
 var ReactRouter = require('react-router');
 var Link = ReactRouter.Link;
@@ -28613,7 +28958,7 @@ var SideLinks = React.createClass({
 
 module.exports = SideLinks;
 
-},{"./SideLinkItem.jsx":261,"react":243,"react-router":90}],263:[function(require,module,exports){
+},{"./SideLinkItem.jsx":263,"react":243,"react-router":90}],265:[function(require,module,exports){
 var React = require('react');
 var SideHeader = require('./SideHeader.jsx');
 var SideLinks = require('./SideLinks.jsx');
@@ -28622,14 +28967,9 @@ var Sidebar = React.createClass({
     displayName: 'Sidebar',
 
     render: function () {
-
-        var sidebarStyle = {
-            zIndex: '-1'
-        };
-
         return React.createElement(
             'div',
-            { style: sidebarStyle, id: 'sideBar' },
+            { id: 'sideBar' },
             React.createElement(SideHeader, null),
             React.createElement('img', { src: 'img/Separator.png', alt: 'sep', style: { width: '100%', marginBottom: '25px' } }),
             React.createElement(SideLinks, null)
@@ -28639,7 +28979,7 @@ var Sidebar = React.createClass({
 
 module.exports = Sidebar;
 
-},{"./SideHeader.jsx":260,"./SideLinks.jsx":262,"react":243}],264:[function(require,module,exports){
+},{"./SideHeader.jsx":262,"./SideLinks.jsx":264,"react":243}],266:[function(require,module,exports){
 var React = require('react');
 
 var SmallIcon = React.createClass({
@@ -28671,11 +29011,11 @@ var SmallIcon = React.createClass({
 
 module.exports = SmallIcon;
 
-},{"react":243}],265:[function(require,module,exports){
+},{"react":243}],267:[function(require,module,exports){
 var React = require('react');
 var ReactDOM = require('react-dom');
 var Routes = require('./Routes.jsx');
 
 ReactDOM.render(Routes, document.getElementById('main'));
 
-},{"./Routes.jsx":247,"react":243,"react-dom":59}]},{},[265]);
+},{"./Routes.jsx":247,"react":243,"react-dom":59}]},{},[267]);

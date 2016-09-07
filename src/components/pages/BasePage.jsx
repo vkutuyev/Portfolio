@@ -8,11 +8,11 @@ var BasePage = React.createClass({
     render: function() {
 
         var sideStyle = {
-                height: '100vh',
                 color: 'white',
                 background: '#003399',
                 padding: '25',
-                minWidth: '155'
+                minWidth: '155',
+                position: 'fixed'
             },
             mainStyle = {
                 minWidth: '25'
@@ -23,7 +23,7 @@ var BasePage = React.createClass({
                     <div className='col-xs-3' style={sideStyle} id='sideWindow'>
                         <Sidebar />
                     </div>
-                    <div className='col-xs-9' style={mainStyle} id='contentWindow'>
+                    <div className='col-xs-9 col-xs-offset-3' style={mainStyle} id='contentWindow'>
                         {this.props.children}
                     </div>
             </div>

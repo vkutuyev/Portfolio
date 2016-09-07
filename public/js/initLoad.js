@@ -1,18 +1,8 @@
-// Sticker
-var adjustPic = function() {
-    var picPos = document.getElementById('profilePic').getBoundingClientRect();
-    var flag = document.getElementById('rusFlag');
-    $(flag).css({
-        'top': picPos.top,
-        'left': picPos.left
-    });
-};
-
-
 $(document).ready(function(){
     Sticker.init('.profile');
-    adjustPic();
     linkify('a');
+    var body = document.getElementsByTagName('body');
+        body[0].style.overflowX = 'hidden';
 });
 
 window.onresize = function() {
@@ -37,6 +27,4 @@ window.onresize = function() {
         $('.sideItemIcon').removeClass('col-xs-8 col-xs-offset-2');
         $('.sideItemIcon').addClass('col-xs-3');
     }
-
-    adjustPic();
 };

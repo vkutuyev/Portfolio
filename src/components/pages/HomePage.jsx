@@ -18,7 +18,7 @@ var HomePage = React.createClass({
                     sound.play();
                 }, 1500);
             }
-            if(this.state.ind == 7){
+            if(this.state.ind == 8){
                 clearInterval(this.cycleText);
             }
         }.bind(this), 5000);
@@ -28,7 +28,7 @@ var HomePage = React.createClass({
     },
     render: function() {
 
-        var fakeText = ['Welcome to my portfolio.', 'I\'m not really sure what to put here.', 'Uh...let\'s see how about...', '~Inspirational Quote~', 'Hmm...no that doesn\'t seem quite right.', 'How about a joke?', 'Swift documentation is great and always helpful.', ''];
+        var fakeText = ['Welcome to my portfolio.', 'I\'m not really sure what to put here.', 'Uh...let\'s see how about...', '~Inspirational Quote~', 'Hmm...no that doesn\'t seem quite right.', 'How about a joke?', 'Xcode\'s debugging messages are useful.', '...sorry', ''];
 
         var textStyle = {
                 fontFamily: 'Baumans',
@@ -46,7 +46,7 @@ var HomePage = React.createClass({
                     <div className='col-xs-8 col-xs-offset-2 helloText'>
                         Hello.
                     </div>
-                    <div className='col-xs-8 col-xs-offset-2'>
+                    <div className='col-xs-10 col-xs-offset-1'>
                         <span className='fakeText' style={{fontSize: '0.8em', fontFamily: 'Raleway'}}>
                             {fakeText[this.state.ind]}
                         </span>

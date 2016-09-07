@@ -12,7 +12,7 @@ var BasePage = require('./components/pages/BasePage.jsx');
 var HomePage = require('./components/pages/HomePage.jsx');
 var ProjectPage = require('./components/pages/projects/ProjectPage.jsx');
 var SkillsPage = require('./components/pages/skills/SkillsPage.jsx');
-var ResumePage = require('./components/pages/ResumePage.jsx');
+var ResumePage = require('./components/pages/resume/ResumePage.jsx');
 var AboutPage = require('./components/pages/AboutPage.jsx');
 
 
