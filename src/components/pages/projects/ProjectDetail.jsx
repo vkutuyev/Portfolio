@@ -25,7 +25,7 @@ var ProjectDetailPage = React.createClass({
                 'CodeBoard' : {
                     'name': "CodeBoard",
                     'desc': "An online, collaborative whiteboard that lets users share code, draw on an HTML5 Canvas whiteboard, and chat with each other in realtime. Features the ability to save whiteboards, join pre-made lobbies, and share/work on large snippets of code with others online. Can be used as a teaching tool or as a debugging tool during a project’s development cycle.",
-                    'made': "Made in three days as part of a two-person team.",
+                    'made': "Original version 1.0 made in three days as part of a two-person team.",
                     'tech': 'Node.js, AngularJS, Express.js, socket.io, HTML5, jQuery',
                     'gif': 'CodeBoard.gif',
                     'url': 'http://codeboard.vkutuyev.com/'
